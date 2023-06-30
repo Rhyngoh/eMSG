@@ -1,7 +1,32 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
+import Image from "next/image";
+import styles from "./page.module.css";
+import { db } from "@/firebase/firebase.config";
+import { collection, getDocs, doc } from "firebase/firestore";
+import getData from "@/firebase/firestore/getData";
+import { useAuthContext } from "@/context/AuthContext";
+import { useState, useEffect } from "react";
+
+export default function Home(props) {
+  const { user } = useAuthContext();
+  console.log(user);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    getUsers();
+  }, []);
+  const getUsers = async () => {
+    console.log("getUsers", db);
+    const usersCol = collection(db, "users");
+    console.log("usersCol", usersCol);
+    const userSnapshot = await getDocs(usersCol);
+    console.log("userSnapshot", userSnapshot);
+    const userList = userSnapshot.docs.map((doc) => doc.data());
+    console.log("userList", userList);
+
+    setUsers(userList);
+  };
+  console.log("props", users);
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -9,87 +34,24 @@ export default function Home() {
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.js</code>
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div>
+        {users.map((el, index) => {
+          return <div key={index}>{el.username}</div>;
+        })}
       </div>
     </main>
-  )
+  );
 }
+
+// export async function getServerSideProps() {
+//   console.log('GetServerSideProps');
+//   const usersCol = collection(db, "users");
+//   console.log("usersCol", usersCol);
+//   const userSnapshot = await getDocs(usersCol);
+//   console.log("userSnapshot", userSnapshot);
+//   const userList = userSnapshot.docs.map((doc) => doc.data());
+//   console.log("userList", userList);
+//   return { props: { users: userList } };
+//   // return { props: { data}}
+// }
