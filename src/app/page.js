@@ -2,56 +2,36 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
-import { db } from "@/firebase/firebase.config";
-import { collection, getDocs, doc } from "firebase/firestore";
-import getData from "@/firebase/firestore/getData";
 import { useAuthContext } from "@/context/AuthContext";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
+import getMessagesByUser from "./../firebase/firestore/getMessagesByUser";
+import InputField from "@/components/InputField";
+import Messages from "@/components/Messages";
+// const fetchMap = new Map();
+// function queryClient(name, query) {
+//   console.log("query");
+//   if (!fetchMap.has(name)) {
+//     fetchMap.set(name, query());
+//   }
+//   return fetchMap.get(name);
+// }
 
 export default function Home(props) {
   const { user } = useAuthContext();
   console.log(user);
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    getUsers();
-  }, []);
-  const getUsers = async () => {
-    console.log("getUsers", db);
-    const usersCol = collection(db, "users");
-    console.log("usersCol", usersCol);
-    const userSnapshot = await getDocs(usersCol);
-    console.log("userSnapshot", userSnapshot);
-    const userList = userSnapshot.docs.map((doc) => doc.data());
-    console.log("userList", userList);
-
-    setUsers(userList);
-  };
-  console.log("props", users);
+  
+  // const messages = use(
+  //   queryClient("hello", () => getMessagesByUser("qsKSi3lz12UrKQc3Ql1G"))
+  // );
+  // console.log("props", messages);
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
+      <div>
+        <InputField />
       </div>
       <div>
-        {users.map((el, index) => {
-          return <div key={index}>{el.username}</div>;
-        })}
+        <Messages groupId={"1"}/>
       </div>
     </main>
   );
 }
-
-// export async function getServerSideProps() {
-//   console.log('GetServerSideProps');
-//   const usersCol = collection(db, "users");
-//   console.log("usersCol", usersCol);
-//   const userSnapshot = await getDocs(usersCol);
-//   console.log("userSnapshot", userSnapshot);
-//   const userList = userSnapshot.docs.map((doc) => doc.data());
-//   console.log("userList", userList);
-//   return { props: { users: userList } };
-//   // return { props: { data}}
-// }
