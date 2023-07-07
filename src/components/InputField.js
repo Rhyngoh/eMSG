@@ -11,13 +11,13 @@ export default function InputField(props) {
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
-  const handleClick = () => {
+  const handleSubmit = () => {
     setMessagesByUser(inputValue, groupId, user.uid);
   }
   return (
     <>
       <input type="text" value={inputValue} onChange={handleInputChange} />
-      <button onClick={handleClick}>Send</button>
+      <button onClick={handleSubmit}>Send</button>
     </>
   );
 }

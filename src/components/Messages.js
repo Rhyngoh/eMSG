@@ -16,8 +16,9 @@ import { db } from "./../firebase/firebase.config.js";
 export default function Messages(props) {
   const { user } = useAuthContext();
   const [messages, setMessages] = useState(null);
+  console.log(props);
   useEffect(() => {
-    const q = query(collection(db, "messages"), where("user", "==", user.uid));
+    const q = query(collection(db, "messages"), where("group", "==", props.groupId));
     const unsub = onSnapshot(q, (docsSnap) => {
       setMessages(docsSnap.docs.map((doc) => doc.data()));
     });

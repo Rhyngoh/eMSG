@@ -2,6 +2,7 @@
 import React from "react";
 import signUp from "@/firebase/auth/signup";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function Page() {
   const [email, setEmail] = React.useState("");
@@ -19,7 +20,7 @@ function Page() {
 
     // else successful
     console.log(result);
-    return router.push("/admin");
+    return router.push("/");
   };
   return (
     <div className="wrapper">
@@ -50,6 +51,7 @@ function Page() {
           </label>
           <button type="submit">Sign up</button>
         </form>
+        <Link href="/">Home</Link>
       </div>
     </div>
   );

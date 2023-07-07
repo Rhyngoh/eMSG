@@ -15,23 +15,33 @@ import Messages from "@/components/Messages";
 //   }
 //   return fetchMap.get(name);
 // }
-
+import {useRouter} from "next/navigation";
+import Link from "next/link";
 export default function Home(props) {
-  const { user } = useAuthContext();
-  console.log(user);
-  
+  const { auth, user } = useAuthContext();
+  console.log(auth, auth.signOut, user);
+
   // const messages = use(
   //   queryClient("hello", () => getMessagesByUser("qsKSi3lz12UrKQc3Ql1G"))
   // );
   // console.log("props", messages);
   return (
     <main className={styles.main}>
-      <div>
-        <InputField />
-      </div>
-      <div>
-        <Messages groupId={"1"}/>
-      </div>
+      {user ? (
+        <div>
+          <div>
+            <button onClick={() => auth.signOut()}>Sign Out</button>
+          </div>
+          <div>
+            <InputField />
+          </div>
+          <div>
+            <Messages groupId={"1"} />
+          </div>
+        </div>
+      ) : (
+        <Link href="/signin">Log in</Link>
+      )}
     </main>
   );
 }
