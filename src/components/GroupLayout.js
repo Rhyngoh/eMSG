@@ -7,6 +7,7 @@ import InputField from "@/components/InputField";
 import Messages from "@/components/Messages";
 import { useRouter } from "next/navigation";
 import getAllGroups from "@/firebase/firestore/getAllGroups";
+
 export default function Page(props) {
   console.log('proop',props);
   const { auth, user } = useAuthContext();

@@ -14,8 +14,8 @@ export default async function getAllGroups() {
   try {
     const q = query(collection(db, "groups"));
     const querySnapshot = await getDocs(q);
-    const messagesList = querySnapshot.docs.map((doc) => doc.data());
-    result = messagesList;
+    const groupsList = querySnapshot.docs.map((doc) => doc.data());
+    result = groupsList;
   } catch (e) {
     console.log("error", e);
     error = e;
