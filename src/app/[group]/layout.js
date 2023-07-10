@@ -8,20 +8,32 @@ import Messages from "@/components/Messages";
 import { useRouter } from "next/navigation";
 import getAllGroups from "@/firebase/firestore/getAllGroups";
 
-export default function Page(props) {
-  console.log('proop',props);
+export default function Layout(props) {
+  console.log('proop', props);
+  const { group: groupId } = props.params;
   const { auth, user } = useAuthContext();
   const router = useRouter();
+  useEffect(() => {
+    console.log(auth, user);
+    if (user === null) {
+      router.push("/signup");
+    }
+  })
+
   console.log(router, props);
   console.log(auth, auth.signOut, user);
   return (
     <div>
-      <div>
-        <InputField groupId={props.group} />
-      </div>
-      <div>
-        <Messages groupId={props.group} />
-      </div>
+      {user && (
+        <div>
+          <div>
+            <Messages groupId={groupId} />
+          </div>
+          <div>
+            <InputField groupId={groupId} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

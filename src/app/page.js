@@ -15,7 +15,7 @@ import Messages from "@/components/Messages";
 //   }
 //   return fetchMap.get(name);
 // }
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 export default function Home(props) {
   const { auth, user } = useAuthContext();
@@ -30,13 +30,7 @@ export default function Home(props) {
       {user ? (
         <div>
           <div>
-            <button onClick={() => auth.signOut()}>Sign Out</button>
-          </div>
-          <div>
-            <InputField />
-          </div>
-          <div>
-            <Messages groupId={"1"} />
+            HOME
           </div>
         </div>
       ) : (

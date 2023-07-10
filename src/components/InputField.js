@@ -13,6 +13,7 @@ export default function InputField(props) {
   };
   const handleSubmit = () => {
     setMessagesByUser(inputValue, groupId, user.uid);
+    setInputValue('');
   }
   return (
     <>

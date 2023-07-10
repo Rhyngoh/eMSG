@@ -1,7 +1,12 @@
+'use client';
+
 import { AuthContextProvider } from "@/context/AuthContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import Navbar from "@/components/Navbar";
+import { useState, useEffect } from 'react';
+import MainLayout from "./MainLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,10 +16,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthContextProvider>{children}</AuthContextProvider>
+        <AuthContextProvider>
+          <Navbar />
+          <MainLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
+            {children}
+          </MainLayout>
+        </AuthContextProvider>
         <ToastContainer />
       </body>
     </html>
