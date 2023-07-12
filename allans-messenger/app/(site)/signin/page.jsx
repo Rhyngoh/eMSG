@@ -1,13 +1,13 @@
 //! Add `use client` to prevent this page from being server side rendered
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import signIn from "@/firebase/auth/signin";
 
-import { provider } from "@/firebase/config";
+import { getAuth, signInWithPopup } from "firebase/auth";
 
-import { getAuth, signInWithPopup, getRedirectResult } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 
 import { toast } from "react-hot-toast";
 
@@ -19,8 +19,6 @@ import FormControls from "@/components/FormControls";
 export default function Page() {
   const auth = getAuth();
 
-  console.log("Am I Authorized yet?", auth);
-
   //* Create state variables for email and password
   const [email, setEmail] = useState("");
 
@@ -31,14 +29,26 @@ export default function Page() {
   const router = useRouter();
 
   //* Sign in (authenticate user) and sign out
-
   const signInWithGoolge = () => {
-    if (!signInWithPopup(auth, provider)) {
-      toast.error("Google Auth Failed!");
-      return router.push("/signin");
-    } else signInWithPopup(auth, provider);
-    toast.success("Google Auth Successful!");
-    return router.push("/inbox");
+    const provider = new GoogleAuthProvider();
+    provider.setCustomParameters({ prompt: "select_account" });
+
+    if (!auth && !provider) {
+      toast.error("Google Auth failed!");
+    }
+
+    if (auth && provider) {
+      provider.addScope("profile");
+      provider.addScope("email");
+
+      signInWithPopup(auth, provider)
+        .then(() => {
+          router.push("/inbox");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   //* Create a function to handle the form for Email and Password

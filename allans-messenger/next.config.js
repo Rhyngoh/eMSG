@@ -1,8 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ["lh3.googleusercontent.com"],
-    hostname: ["lh3.googleusercontent.com"],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: "attachment",
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "placehold.co",
+        pathname: "/400x400",
+      },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+    ],
   },
 };
 

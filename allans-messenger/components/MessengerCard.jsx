@@ -14,18 +14,29 @@ export default function MessengerCard() {
   console.log(user);
 
   const userImage = user.photoURL;
+  const userURLImage = "https://placehold.co/400x400";
 
   return (
     <div>
       <div>
         <div className="py-3 flex justify-between items-center border-b-2">
-          <Image
-            className="rounded-full"
-            src={userImage}
-            width={68}
-            height={68}
-            alt={user?.displayName}
-          />
+          {userImage ? (
+            <Image
+              className="rounded-full"
+              src={userImage}
+              width={68}
+              height={68}
+              alt={user?.displayName}
+            />
+          ) : (
+            <Image
+              className="rounded-full"
+              src={userURLImage}
+              width={68}
+              height={68}
+              alt={user?.displayName}
+            />
+          )}
           <p>{user?.displayName}</p>
           {/* <p>{user?.metadata.lastSignInTime}</p> */}
         </div>
