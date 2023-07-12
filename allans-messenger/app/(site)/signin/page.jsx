@@ -4,10 +4,7 @@
 import React, { useState } from "react";
 
 import signIn from "@/firebase/auth/signin";
-
-import { getAuth, signInWithPopup } from "firebase/auth";
-
-import { GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 import { toast } from "react-hot-toast";
 
@@ -16,9 +13,7 @@ import { useRouter } from "next/navigation";
 import FormControls from "@/components/FormControls";
 
 import { BsGoogle } from "react-icons/bs";
-
 import { FaUser } from "react-icons/fa";
-
 import { RiLoginCircleLine } from "react-icons/ri";
 
 export default function Page() {
@@ -38,10 +33,14 @@ export default function Page() {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" });
 
+    //* Check if the auth and provider exists before proceeding to sign in with Google Auth and redirect to the inbox page
     if (!auth && !provider) {
       toast.error("Google Auth failed!");
+      router.push("/signin");
+      return console.log("Google Auth failed!");
     }
 
+    //* If the auth and provider exists, proceed to sign in with Google Auth and redirect to the inbox page
     if (auth && provider) {
       provider.addScope("profile");
       provider.addScope("email");

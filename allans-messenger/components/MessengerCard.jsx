@@ -11,7 +11,6 @@ import Image from "next/image";
 
 export default function MessengerCard() {
   const { user } = useAuthContext();
-  console.log(user);
 
   const userImage = user.photoURL;
   const userURLImage = "https://placehold.co/400x400";
