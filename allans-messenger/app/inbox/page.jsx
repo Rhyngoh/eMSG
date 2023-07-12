@@ -61,17 +61,15 @@ export default function Page() {
       <hr />
 
       {/* Title */}
-      <div>
-        <p className=" pt-7 text-4xl font-bold text-center"> Messages </p>
-      </div>
+      <p className=" pt-7 text-4xl font-bold text-center lg:hidden">Messages</p>
 
       {/* Chat Wrapper */}
       <div className="flex flex-col justify-around items-center h-screen lg:flex-row-reverse lg:items-start">
         {/* Messages Wrapper */}
-        <div className="bg-neutral-100 ms-4 me-10 my-10 h-4/6 w-5/6 rounded-lg shadow-xl">
+        <div className="bg-neutral-100 ms-4 me-10 my-10 h-4/6 w-4/6 rounded-lg shadow-xl">
           <div className="flex flex-col items-center h-screen">
             {/* Chat Area */}
-            <div className="bg-white rounded-md mt-7 h-5/6 w-5/6 lg:w-4/6">
+            <div className="bg-white rounded-md mt-7 h-5/6 w-5/6">
               <div className="h-72 w-full"> </div>
             </div>
 
@@ -80,7 +78,7 @@ export default function Page() {
           </div>
         </div>
         {/* Conversations */}
-        <div className="my-10 mx-5">
+        <div className="my-10">
           <div className="border-x-red-300 lg:border-x-8 lg:px-7 lg:h-screen rounded-xl">
             <p className="text-4xl font-bold">Conversations</p>
             <hr className="mt-5" />
