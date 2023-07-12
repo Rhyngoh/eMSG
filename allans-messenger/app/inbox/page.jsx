@@ -1,9 +1,11 @@
 //! Add `use client` to prevent this page from being server side rendered
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { useAuthContext } from "@/context/AuthContext";
+
+import { toast } from "react-hot-toast";
 
 import MessengerCard from "@/components/MessengerCard";
 import MessageBar from "@/components/MessageBar";
@@ -14,28 +16,20 @@ import Link from "next/link";
 export default function Page() {
   const { user } = useAuthContext();
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (!user || user === null || user === undefined) {
-      return;
-    }
-
-    //* When user status is known, reset loading state to false
-    setLoading(false);
-
-    if (!user || user === null || user === undefined) {
-      router.push("/");
-    }
-  }, [user]);
-
-  if (loading) {
+  if (!user) {
     return (
       <div className="flex flex-col items-center py-10 font-bold text-5xl">
         Loading...
       </div>
     );
   }
+
+  useEffect(() => {
+    if (user) {
+      router.push("/inbox");
+    }
+  }, [user]);
 
   return (
     <>

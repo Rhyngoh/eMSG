@@ -13,7 +13,7 @@ export default function MessageBar() {
             size={32}
           />
           <input
-            className="w-full p-3 me-3 rounded-xl outline-none border-2 border-sky-200 focus:border-sky-300"
+            className="w-full p-3 me-3 rounded-xl outline-none border-2 border-sky-200 focus:border-sky-400"
             type="text"
             placeholder="Start typing here. . ."
           />

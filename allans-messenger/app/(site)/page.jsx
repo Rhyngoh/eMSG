@@ -1,20 +1,17 @@
 //! Add `use client` to prevent this page from being server side rendered
 "use client";
 
-//* Import React, useState, signIn function, useRouter, Link, toast, and FormControls
 import React, { useState } from "react";
 
 import { toast } from "react-hot-toast";
 
 import signUp from "@/firebase/auth/signup";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import FormControls from "@/components/FormControls";
 
 import { FaUser } from "react-icons/fa";
-
 import { RiLoginCircleLine } from "react-icons/ri";
 
 export default function Page() {
@@ -53,7 +50,6 @@ export default function Page() {
     router.push("/signin");
   };
 
-  //* Return the form
   return (
     //* Wrapper Div
     <div className="wrapper">
