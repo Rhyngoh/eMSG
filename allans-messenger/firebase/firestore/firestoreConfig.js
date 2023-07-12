@@ -14,14 +14,15 @@ import {
 //* Get Messages from the database
 export const getMessages = async () => {
   //* Get a list of messages from the database
-  const querySnapshot = await getDocs(collection(db, "messages"));
+  // const querySnapshot = await getDocs(collection(db, "messages"));
   // console.log("Messages from database:", querySnapshot);
 
   //* Get a list of messages from the database
   const messageRef = collection(db, "messages");
-  // console.log("Messages", messageRef);
+  console.log("Messages", messageRef);
 
   const q = query(messageRef, orderBy("createdAt", "desc"));
+  const querySnapshot = await getDocs(q);
 
   //* Create an array of messages
   const messages = [];
@@ -30,6 +31,7 @@ export const getMessages = async () => {
     messages.push(doc.data());
     // console.log(doc.id, " => ", doc.data());
   });
+  console.log("Messages from database:", messages);
   return messages;
 };
 

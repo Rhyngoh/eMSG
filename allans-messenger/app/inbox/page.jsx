@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 
 import { getMessages } from "@/firebase/firestore/firestoreConfig";
+import { db } from "@/firebase/config";
+import { doc, onSnapshot, collection, query } from "firebase/firestore";
 
 import MessengerCard from "@/components/MessengerCard";
 import MessageBar from "@/components/MessageBar";
@@ -33,14 +35,29 @@ export default function Page() {
     }
   }, [user]);
 
-  // console.log("Messages from Inbox Page:", messages);
+  console.log("Messages from Inbox Page:", messages);
 
   //* Get messages from the database
   useEffect(() => {
-    getMessages().then((messages) => {
-      // console.log(messages);
-      setMessages(messages);
+    console.log(db);
+    const messageRef = collection(db, "messages");
+    console.log(messageRef);
+
+    const q = query(messageRef);
+    console.log(q);
+    const unsubscribe = onSnapshot(q, (doc) => {
+      console.log(doc);
+      setMessages(
+        doc.docs.map((documents) => ({
+          ...documents.data(),
+        }))
+      );
     });
+    // console.log(unsubscribe);
+    // getMessages().then((messages) => {
+    //   console.log(messages);
+    //   setMessages(messages);
+    // });
   }, []);
 
   return (
@@ -87,11 +104,10 @@ export default function Page() {
             <div className="bg-white rounded-md mt-7 h-5/6 w-5/6">
               <div className="h-72 w-full">
                 {/* //TODO Show Chat Messages */}
-                {messages.map((message) => {
+                {messages.map((message, i) => {
                   return (
-                    <div className="flex">
-                      {/* <p>{message.user}</p> */}
-                      <p>{message.content}</p>
+                    <div key={i} className="flex">
+                      <p>{message.message}</p>
                     </div>
                   );
                 })}
