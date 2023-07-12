@@ -30,7 +30,7 @@ export default function Page() {
     //* Prevent the default form action
     event.preventDefault();
 
-    const { result, error } = await signUp(email, password);
+    const { result, error } = await signUp(email, password, name);
 
     if (error) {
       toast.error("Sign up failed, please try again!");
@@ -58,7 +58,7 @@ export default function Page() {
         {/* Form Controls: Name */}
         <FormControls
           label="Name"
-          type="displayName"
+          type="name"
           id="displayName"
           value={name}
           setValue={setName}

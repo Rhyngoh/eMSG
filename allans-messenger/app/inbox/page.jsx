@@ -41,7 +41,9 @@ export default function Page() {
         <div className="">
           {user && (
             <>
-              <p className="text-sm  font-bold  text-center">{user.uid}</p>
+              <p className="text-sm  font-bold  text-center">
+                {user.displayName}
+              </p>
               <p className="text-sm  font-bold  text-center">{user.email}</p>
             </>
           )}

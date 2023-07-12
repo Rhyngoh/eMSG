@@ -22,7 +22,7 @@ export default function MessengerCard() {
             alt="Placeholder Image"
           />
           <p>{user?.displayName}</p>
-          <p>{user?.metadata.lastSignInTime}</p>
+          {/* <p>{user?.metadata.lastSignInTime}</p> */}
         </div>
       </div>
     </div>
