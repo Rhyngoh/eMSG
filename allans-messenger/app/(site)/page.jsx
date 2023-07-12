@@ -14,6 +14,8 @@ import { useRouter } from "next/navigation";
 import FormControls from "@/components/FormControls";
 
 export default function Page() {
+  const [name, setName] = useState("");
+
   //* Create state variables for email and password
   const [email, setEmail] = useState("");
 
@@ -53,6 +55,14 @@ export default function Page() {
             Sign Up to eMSG Chat
           </h1>
         </div>
+        {/* Form Controls: Name */}
+        <FormControls
+          label="Name"
+          type="displayName"
+          id="displayName"
+          value={name}
+          setValue={setName}
+        />
         {/* Form Controls: Email */}
         <FormControls
           label="Email"

@@ -4,7 +4,7 @@
 //* Import React, hooks, onAuthStateChanged, getAuth & firebase_app
 import React, { useState, useEffect, useContext, createContext } from "react";
 
-import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { onAuthStateChanged, getAuth, getUser } from "firebase/auth";
 
 import firebase_app from "@/firebase/config";
 
