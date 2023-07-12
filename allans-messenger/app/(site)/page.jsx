@@ -32,15 +32,28 @@ export default function Page() {
 
     const { result, error } = await signUp(email, password, name);
 
-    if (error) {
+    if (!name || !email || !password === error) {
+      toast.error("Please enter in all the fields!");
+    } else if (error) {
       toast.error("Sign up failed, please try again!");
       return console.log(error);
+    } else {
+      console.log(result);
+      toast.success("Sign up successful!");
+      return router.push("/inbox");
     }
 
+    // if (error) {
+    //   toast.error("Sign up failed, please try again!");
+    //   return console.log(error);
+    // }
+
     //* else successful
-    console.log(result);
-    toast.success("Sign up successful!");
-    return router.push("/inbox");
+    // if (name === !error) {
+    // console.log(result);
+    // toast.success("Sign up successful!");
+    // return router.push("/inbox");
+    // }
   };
 
   //* Return the form
@@ -55,6 +68,7 @@ export default function Page() {
             Sign Up to eMSG Chat
           </h1>
         </div>
+
         {/* Form Controls: Name */}
         <FormControls
           label="Name"
@@ -79,6 +93,7 @@ export default function Page() {
           value={password}
           setValue={setPassword}
         />
+
         {/* Buttons Wrapper */}
         <div className="flex flex-col items-center">
           <button className="btn" onClick={handleForm} type="submit">

@@ -19,7 +19,7 @@ export default function FormControls({ label, type, id, value, setValue }) {
             focus:ring-4
             focus:ring-purple-300
             outline-none
-            bg-gray-100
+            bg-gray-50
             leading-6
             cursor-pointer
           "
@@ -33,7 +33,7 @@ export default function FormControls({ label, type, id, value, setValue }) {
             id === "email"
               ? "example@email.com"
               : id === "displayName"
-              ? "Enter Your Name"
+              ? "username"
               : "password"
           }
         />

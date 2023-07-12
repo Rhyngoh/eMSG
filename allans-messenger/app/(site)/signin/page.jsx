@@ -1,10 +1,13 @@
 //! Add `use client` to prevent this page from being server side rendered
 "use client";
 
-//* Import React, useState, signIn function, useRouter, Link, toast, and FormControls
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import signIn from "@/firebase/auth/signin";
+
+import { provider } from "@/firebase/config";
+
+import { getAuth, signInWithPopup, getRedirectResult } from "firebase/auth";
 
 import { toast } from "react-hot-toast";
 
@@ -14,6 +17,10 @@ import { useRouter } from "next/navigation";
 import FormControls from "@/components/FormControls";
 
 export default function Page() {
+  const auth = getAuth();
+
+  console.log("Am I Authorized yet?", auth);
+
   //* Create state variables for email and password
   const [email, setEmail] = useState("");
 
@@ -23,7 +30,18 @@ export default function Page() {
   //* Create a router variable
   const router = useRouter();
 
-  //* Create a function to handle the form
+  //* Sign in (authenticate user) and sign out
+
+  const signInWithGoolge = () => {
+    if (!signInWithPopup(auth, provider)) {
+      toast.error("Google Auth Failed!");
+      return router.push("/signin");
+    } else signInWithPopup(auth, provider);
+    toast.success("Google Auth Successful!");
+    return router.push("/inbox");
+  };
+
+  //* Create a function to handle the form for Email and Password
   const handleForm = async (event) => {
     //* Prevent the default form action
     event.preventDefault();
@@ -53,6 +71,7 @@ export default function Page() {
             Sign In to eMSG Chat
           </h1>
         </div>
+
         {/* Form Controls: Email */}
         <FormControls
           label="Email"
@@ -69,6 +88,7 @@ export default function Page() {
           value={password}
           setValue={setPassword}
         />
+
         <div className="flex flex-col items-center">
           {/* Buttons Wrapper */}
           <div className="flex flex-col items-center">
@@ -80,6 +100,10 @@ export default function Page() {
               Sign Up Now
             </Link>
           </div>
+          {/* Google Sign In */}
+          <button className="btn-2 mx-auto my-5" onClick={signInWithGoolge}>
+            Google Sign-In
+          </button>
         </div>
       </div>
     </div>

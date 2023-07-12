@@ -30,7 +30,11 @@ export default function Page() {
   }, [user]);
 
   if (loading) {
-    return <div className="text-5xl font-bold">Loading...</div>;
+    return (
+      <div className="flex flex-col items-center py-10 font-bold text-5xl">
+        Loading...
+      </div>
+    );
   }
 
   return (
@@ -38,13 +42,11 @@ export default function Page() {
       {/* Header */}
       <div className="flex flex-row-reverse justify-around lg:justify-between px-2 lg:px-10 py-10">
         {/* User Information */}
-        <div className="">
+        <div className="text-sm  font-bold  text-left">
           {user && (
             <>
-              <p className="text-sm  font-bold  text-left">
-                {user.displayName}
-              </p>
-              <p className="text-sm  font-bold  text-left">{user.email}</p>
+              <p>{user.displayName}</p>
+              <p>{user.email}</p>
             </>
           )}
         </div>
@@ -83,13 +85,14 @@ export default function Page() {
             <MessageBar />
           </div>
         </div>
+
         {/* Conversations */}
         <div className="my-10">
           <div className="border-x-red-300 lg:border-x-8 lg:px-7 lg:h-screen rounded-xl">
             <p className="text-4xl font-bold">Conversations</p>
             <hr className="mt-5" />
-            {/* Messenger Card */}
 
+            {/* Messenger Card */}
             <MessengerCard />
           </div>
         </div>
