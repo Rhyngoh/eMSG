@@ -1,9 +1,11 @@
 //! Add `use client` to prevent this page from being server side rendered
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { useAuthContext } from "@/context/AuthContext";
+
+import { getMessages } from "@/firebase/firestore/firestoreConfig";
 
 import MessengerCard from "@/components/MessengerCard";
 import MessageBar from "@/components/MessageBar";
@@ -12,6 +14,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Page() {
+  const [messages, setMessages] = useState([]);
+
   const { user } = useAuthContext();
   const router = useRouter();
 
@@ -28,6 +32,16 @@ export default function Page() {
       router.push("/inbox");
     }
   }, [user]);
+
+  // console.log("Messages from Inbox Page:", messages);
+
+  //* Get messages from the database
+  useEffect(() => {
+    getMessages().then((messages) => {
+      // console.log(messages);
+      setMessages(messages);
+    });
+  }, []);
 
   return (
     <>
@@ -71,7 +85,17 @@ export default function Page() {
           <div className="flex flex-col items-center h-screen">
             {/* Chat Area */}
             <div className="bg-white rounded-md mt-7 h-5/6 w-5/6">
-              <div className="h-72 w-full"> </div>
+              <div className="h-72 w-full">
+                {/* //TODO Show Chat Messages */}
+                {messages.map((message) => {
+                  return (
+                    <div className="flex">
+                      {/* <p>{message.user}</p> */}
+                      <p>{message.content}</p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Message Bar */}
