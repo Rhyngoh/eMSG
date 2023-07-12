@@ -37,7 +37,6 @@ export default function MessengerCard() {
             />
           )}
           <p>{user?.displayName}</p>
-          {/* <p>{user?.metadata.lastSignInTime}</p> */}
         </div>
       </div>
     </div>

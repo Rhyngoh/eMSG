@@ -27,19 +27,19 @@ export default function Page() {
   const router = useRouter();
 
   //* Create a function to handle the form
-  const handleForm = async (event) => {
+  const handleForm = async (e) => {
     //* Prevent the default form action
-    event.preventDefault();
+    e.preventDefault();
 
     const { result, error } = await signUp(email, password, name);
 
-    if (!name || !email || !password === error) {
+    if (!name || !email || !password) {
       toast.error("Please enter in all the fields!");
+      console.log(error);
     } else if (error) {
       toast.error("Sign up failed, please try again!");
-      return console.log(error);
+      console.log(error);
     } else {
-      console.log(result);
       toast.success("Sign up successful!");
       return router.push("/inbox");
     }

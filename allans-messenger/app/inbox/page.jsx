@@ -5,8 +5,6 @@ import { useEffect } from "react";
 
 import { useAuthContext } from "@/context/AuthContext";
 
-import { toast } from "react-hot-toast";
-
 import MessengerCard from "@/components/MessengerCard";
 import MessageBar from "@/components/MessageBar";
 
@@ -39,8 +37,9 @@ export default function Page() {
         <div className="text-sm  font-bold  text-left">
           {user && (
             <>
-              <p>{user.displayName}</p>
-              <p>{user.email}</p>
+              <p>{user?.displayName}</p>
+              <p>{user?.email}</p>
+              <p>{user?.metadata.lastSignInTime}</p>
             </>
           )}
         </div>
