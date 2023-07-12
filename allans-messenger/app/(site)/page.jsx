@@ -50,7 +50,7 @@ export default function Page() {
         {/* Title Div */}
         <div className="py-10">
           <h1 className="text-4xl lg:text-5xl text-center font-bold px-2">
-            Sign Up to Firebase Registration Tutorial
+            Sign Up to eMSG Chat
           </h1>
         </div>
         {/* Form Controls: Email */}

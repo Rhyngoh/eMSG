@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 
-html, body, :root {height: 100%;}
+html, body, :root {
+  max-width: 1680px;
+  height: 100%;
+  margin: auto;
+}
 
 .btn {
   @apply px-4 py-2 text-2xl rounded-md shadow-md hover:shadow-lg bg-sky-300 hover:bg-sky-400 transition text-white font-bold;
@@ -18,5 +22,5 @@ html, body, :root {height: 100%;}
 }
 
 .btn-4 {
-  @apply px-4 py-2 mt-5 text-2xl rounded-md shadow-md hover:shadow-lg bg-teal-400 hover:bg-teal-500 transition text-white font-bold;
+  @apply px-5 py-2 text-xl rounded-md shadow-md hover:shadow-lg bg-orange-400 hover:bg-orange-500 transition text-white font-bold;
 }
