@@ -2,6 +2,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 import { Montserrat } from "next/font/google";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 const mont = Montserrat({ subsets: ["latin"] });
 
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={mont.className}>
-        {children}
+        <AuthContextProvider>{children}</AuthContextProvider>
         <Toaster />
       </body>
     </html>
