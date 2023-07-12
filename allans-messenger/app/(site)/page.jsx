@@ -13,6 +13,10 @@ import { useRouter } from "next/navigation";
 
 import FormControls from "@/components/FormControls";
 
+import { FaUser } from "react-icons/fa";
+
+import { RiLoginCircleLine } from "react-icons/ri";
+
 export default function Page() {
   const [name, setName] = useState("");
 
@@ -42,18 +46,11 @@ export default function Page() {
       toast.success("Sign up successful!");
       return router.push("/inbox");
     }
+  };
 
-    // if (error) {
-    //   toast.error("Sign up failed, please try again!");
-    //   return console.log(error);
-    // }
-
-    //* else successful
-    // if (name === !error) {
-    // console.log(result);
-    // toast.success("Sign up successful!");
-    // return router.push("/inbox");
-    // }
+  //* Go to sign in page
+  const handleSignIn = () => {
+    router.push("/signin");
   };
 
   //* Return the form
@@ -95,14 +92,26 @@ export default function Page() {
         />
 
         {/* Buttons Wrapper */}
-        <div className="flex flex-col items-center">
-          <button className="btn" onClick={handleForm} type="submit">
-            Register
-          </button>
-          {/* Login URL */}
-          <Link className="btn-2" href="/signin">
-            Login to Account
-          </Link>
+        <div className="flex justify-center mx-auto">
+          <div className="flex items-center">
+            {/* Register Button */}
+            <FaUser
+              className="cursor-pointer"
+              size={34}
+              onClick={handleForm}
+              type="submit"
+            >
+              Register
+            </FaUser>
+            {/* Login URL */}
+            <RiLoginCircleLine
+              size={37}
+              className="cursor-pointer mx-5 mt-1"
+              onClick={handleSignIn}
+            >
+              Login to Account
+            </RiLoginCircleLine>
+          </div>
         </div>
       </div>
     </div>

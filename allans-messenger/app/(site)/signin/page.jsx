@@ -11,10 +11,15 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 import { toast } from "react-hot-toast";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import FormControls from "@/components/FormControls";
+
+import { BsGoogle } from "react-icons/bs";
+
+import { FaUser } from "react-icons/fa";
+
+import { RiLoginCircleLine } from "react-icons/ri";
 
 export default function Page() {
   const auth = getAuth();
@@ -69,6 +74,11 @@ export default function Page() {
     return router.push("/inbox");
   };
 
+  //* Go to Sign up page
+  const handleSignUp = () => {
+    router.push("/");
+  };
+
   //* Return the form
   return (
     //* Wrapper Div
@@ -99,21 +109,33 @@ export default function Page() {
           setValue={setPassword}
         />
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col justify-between items-center my-5">
           {/* Buttons Wrapper */}
-          <div className="flex flex-col items-center">
-            <button className="btn" onClick={handleForm} type="submit">
-              Login
-            </button>
+          <div className="flex flex-row-reverse items-center">
+            {/* Login */}
+            <RiLoginCircleLine
+              type="submit"
+              className="mx-auto ms-5 cursor-pointer"
+              size={37}
+              onClick={handleForm}
+            ></RiLoginCircleLine>
+
             {/* Sign-up URL */}
-            <Link className="btn-3" href="/">
-              Sign Up Now
-            </Link>
+            <FaUser
+              className="cursor-pointer"
+              size={34}
+              onClick={handleSignUp}
+            ></FaUser>
+
+            {/* Google Sign In */}
+            <BsGoogle
+              className="mx-auto me-5 cursor-pointer"
+              size={34}
+              onClick={signInWithGoolge}
+            >
+              Google Sign-In
+            </BsGoogle>
           </div>
-          {/* Google Sign In */}
-          <button className="btn-2 mx-auto my-5" onClick={signInWithGoolge}>
-            Google Sign-In
-          </button>
         </div>
       </div>
     </div>

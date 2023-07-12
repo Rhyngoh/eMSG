@@ -23,5 +23,5 @@ html, body, :root {
 }
 
 .btn-4 {
-  @apply px-5 py-2 text-xl rounded-md shadow-md hover:shadow-lg bg-orange-400 hover:bg-orange-500 transition text-white font-bold;
+  @apply px-5 py-2 text-xl rounded-md shadow-md hover:shadow-lg bg-red-400 hover:bg-red-500 transition text-white font-bold;
 }
