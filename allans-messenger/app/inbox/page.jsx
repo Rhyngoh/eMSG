@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { useAuthContext } from "@/context/AuthContext";
 
+import MessengerCard from "@/components/MessengerCard";
 import MessageBar from "@/components/MessageBar";
 
 import { useRouter } from "next/navigation";
@@ -45,13 +46,16 @@ export default function Page() {
             </>
           )}
         </div>
+
+        {/* Inbox Page Title(s) */}
         <div className="hidden sm:flex  sm:text-2xl lg:text-5xl text-center font-bold  lg:hidden">
           eMSG
         </div>
         <div className="text-2xl lg:text-5xl text-center font-bold hidden lg:flex">
           eMessages Chat Room
         </div>
-        {/* Button */}
+
+        {/* Sign Out Button */}
         <div>
           <Link className="btn-4" href="/signin">
             Sign Out
@@ -60,7 +64,7 @@ export default function Page() {
       </div>
       <hr />
 
-      {/* Title */}
+      {/* Messenger Title */}
       <p className=" pt-7 text-4xl font-bold text-center lg:hidden">Messages</p>
 
       {/* Chat Wrapper */}
@@ -82,6 +86,8 @@ export default function Page() {
           <div className="border-x-red-300 lg:border-x-8 lg:px-7 lg:h-screen rounded-xl">
             <p className="text-4xl font-bold">Conversations</p>
             <hr className="mt-5" />
+            {/* Messenger Card */}
+            <MessengerCard />
           </div>
         </div>
       </div>
