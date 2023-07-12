@@ -41,10 +41,10 @@ export default function Page() {
         <div className="">
           {user && (
             <>
-              <p className="text-sm  font-bold  text-center">
+              <p className="text-sm  font-bold  text-left">
                 {user.displayName}
               </p>
-              <p className="text-sm  font-bold  text-center">{user.email}</p>
+              <p className="text-sm  font-bold  text-left">{user.email}</p>
             </>
           )}
         </div>
