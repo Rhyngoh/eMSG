@@ -14,15 +14,14 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user === undefined) {
+    if (!user || user === null || user === undefined) {
       return;
     }
 
     //* When user status is known, reset loading state to false
     setLoading(false);
 
-    //* If user is not logged in, redirect to home page
-    if (user == null) {
+    if (!user || user === null || user === undefined) {
       router.push("/");
     }
   }, [user]);

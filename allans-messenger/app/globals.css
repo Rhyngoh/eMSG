@@ -7,6 +7,7 @@ html, body, :root {
   max-width: 1680px;
   height: 100%;
   margin: auto;
+  background-color: gray;
 }
 
 .btn {
