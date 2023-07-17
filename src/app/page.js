@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
+import Dashboard from "./dashboard/dashboard";
+import SignIn from './signin/page'
 import { db } from "@/firebase/firebase.config";
 import { collection, getDocs, doc } from "firebase/firestore";
 import getData from "@/firebase/firestore/getData";
@@ -10,10 +12,10 @@ import { useState, useEffect } from "react";
 
 export default function Home(props) {
   const { user } = useAuthContext();
-  console.log(user);
+  console.log('Current user: ', user);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    getUsers();
+    //getUsers();
   }, []);
   const getUsers = async () => {
     console.log("getUsers", db);
@@ -26,21 +28,11 @@ export default function Home(props) {
 
     setUsers(userList);
   };
-  console.log("props", users);
+  //console.log("props", users);
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-      </div>
-      <div>
-        {users.map((el, index) => {
-          return <div key={index}>{el.username}</div>;
-        })}
-      </div>
-    </main>
+    <>
+      {user ? <Dashboard /> : <SignIn />}
+    </>
   );
 }
 

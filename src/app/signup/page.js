@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import signUp from "@/firebase/auth/signup";
+import Button from "@/components/Button";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 function Page() {
@@ -19,38 +21,27 @@ function Page() {
 
     // else successful
     console.log(result);
-    return router.push("/admin");
+    return router.push("/");
   };
   return (
-    <div className="wrapper">
-      <div className="form-wrapper">
-        <h1 className="mt-60 mb-30">Sign up</h1>
-        <form onSubmit={handleForm} className="form">
-          <label htmlFor="email">
-            <p>Email</p>
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@mail.com"
-            />
-          </label>
-          <label htmlFor="password">
-            <p>Password</p>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-            />
-          </label>
-          <button type="submit">Sign up</button>
-        </form>
-      </div>
+    <div className="flex justify-center items-center h-screen">
+        <div className="w-2/5">
+            <h1 className="text-center text-4xl">Sign up</h1>
+            <form onSubmit={handleForm} className="form flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="email">Email</label>
+                    <input className="p-2 rounded" onChange={(e) => setEmail(e.target.value)} required type="email" name="email" id="email" placeholder="example@mail.com" />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="password">Password</label>
+                    <input className="p-2 rounded" onChange={(e) => setPassword(e.target.value)} required type="password" name="password" id="password" placeholder="password" />
+                </div>  
+                <div className="flex gap-3 justify-center">
+                    <Button type="submit">Sign up</Button>
+                    <Link href={'/'}>Back</Link>
+                </div>
+            </form>
+        </div>
     </div>
   );
 }
