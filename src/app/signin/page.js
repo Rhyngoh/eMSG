@@ -14,7 +14,7 @@ function Page() {
     event.preventDefault();
 
     const { result, error } = await signIn(email, password);
-
+    console.log(result, error);
     if (error) {
       toast("Invalid email or password", { type: "error" });
       return console.log("error", error);
@@ -27,7 +27,7 @@ function Page() {
   return (
     <div className="wrapper">
       <div className="form-wrapper">
-        <h1 className="mt-60 mb-30">Sign up</h1>
+        <h1 className="mt-60 mb-30">Sign in</h1>
         <form onSubmit={handleForm} className="form">
           <label htmlFor="email">
             <p>Email</p>

@@ -10,15 +10,17 @@ import {
   query,
   where,
   onSnapshot,
+  orderBy
 } from "firebase/firestore";
 import { db } from "./../firebase/firebase.config.js";
 
 export default function Messages(props) {
   const { user } = useAuthContext();
-  const [messages, setMessages] = useState(null);
+  const { groupId } = props;
+  const [messages, setMessages] = useState([]);
   console.log(props);
   useEffect(() => {
-    const q = query(collection(db, "messages"), where("group", "==", props.groupId));
+    const q = query(collection(db, "messages"), where("group", "==", groupId), orderBy("createdOn", "asc"));
     const unsub = onSnapshot(q, (docsSnap) => {
       setMessages(docsSnap.docs.map((doc) => doc.data()));
     });

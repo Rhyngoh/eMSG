@@ -51,6 +51,7 @@ function Page() {
           </label>
           <button type="submit">Sign up</button>
         </form>
+        <p>Already have an account? <Link href="/signin">Login</Link></p>
         <Link href="/">Home</Link>
       </div>
     </div>
