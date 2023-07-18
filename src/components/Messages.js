@@ -14,6 +14,7 @@ import {
 } from "firebase/firestore";
 import { db } from "./../firebase/firebase.config.js";
 import format from "date-fns/format";
+import InputField from "./InputField.js";
 
 export default function Messages(props) {
   const { user } = useAuthContext();
@@ -38,33 +39,26 @@ export default function Messages(props) {
       </div>
     );
   return (
-    <div className="flex flex-col justify-around items-center h-auto max-h-full lg:flex-row-reverse lg:items-start">
-      {/* Messages Wrapper */}
-      <div className="bg-neutral-100 ms-4 me-10 my-10 h-4/6 w-4/6 max-h-full rounded-lg shadow-xl">
-        <div className="flex flex-col items-center h-screen">
-          {/* Chat Area */}
-          <div className="bg-white rounded-md mt-7 h-5/6 w-5/6">
-            <div className="h-72 w-full">
-              {/* //TODO Show Chat Messages */}
-              {messages.map((message, i) => {
-                let messageCreatedOn = message.createdOn && format(message.createdOn.toDate(), 'h:mm a d/M/y')
-                return (
-                  <div key={i}>
-                    <p>{message.user}</p>
-                    <p>{message.content}</p>
-                    <p>{messageCreatedOn}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+    <div className="flex flex-col justify-around items-center h-auto max-h-full lg:items-start shadow-xl">
+      <div className="bg-neutral-100 p-7 m-7 w-[95%] h-[400px] overflow-auto max-h-screen rounded-lg">
+        <div className="h-[400px]">
+          {messages.map((message, i) => {
+            let messageCreatedOn =
+              message.createdOn &&
+              format(message.createdOn.toDate(), "h:mm a d/M/y");
+            return (
+              <div key={i}>
+                <p>{message.user}</p>
+                <p>{message.content}</p>
+                <p>{messageCreatedOn}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
+      <div className="flex justify-center items-center w-full">
+        <InputField groupId={groupId} />
+      </div>
     </div>
-    // {/* <div>
-    //   {messages?.map((el, index) => {
-    //     return <div key={index}>{el.content}</div>;
-    //   })}
-    // </div> */}
   );
 }
