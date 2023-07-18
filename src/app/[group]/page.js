@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import getAllGroups from "@/firebase/firestore/getAllGroups";
 import Layout from "./layout";
 
+// NOTE: This is probably not necessary since almost everything is client-side fetched
 export async function generateStaticParams() {
   let groups = await getAllGroups();
   console.log('================================')

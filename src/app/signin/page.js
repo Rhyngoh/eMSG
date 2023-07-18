@@ -1,61 +1,105 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import signIn from "@/firebase/auth/signin";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-hot-toast";
+import FormControls from "@/components/FormControls";
+import { BsGoogle } from "react-icons/bs";
+import { FaUser } from "react-icons/fa";
+import { RiLoginCircleLine } from "react-icons/ri";
 import Link from "next/link";
+import { useAuthContext } from "@/context/AuthContext";
 function Page() {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
-
+  const { googleSignIn, login } = useAuthContext();
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      router.push("/");
+    } catch (e) {
+      console.log(e);
+      toast.error("Google Sign Up Failed");
+      return;
+    }
+  };
   const handleForm = async (event) => {
     event.preventDefault();
 
     const { result, error } = await signIn(email, password);
     console.log(result, error);
     if (error) {
-      toast("Invalid email or password", { type: "error" });
+      toast.error("Sign In Failed");
       return console.log("error", error);
     }
 
     // else successful
+    toast.success("Sign In Successful");
     console.log(result);
     return router.push("/");
   };
+  const handleSignUp = () => {
+    router.push("/signup");
+  };
   return (
     <div className="wrapper">
-      <div className="form-wrapper">
-        <h1 className="mt-60 mb-30">Sign in</h1>
+      <div className="form-wrapper flex flex-col">
+        <div className="py-10">
+          <h1 className="text-4xl lg:text-5xl text-center font-bold px-2">
+            Sign In to eMSG Chat
+          </h1>
+        </div>
         <form onSubmit={handleForm} className="form">
-          <label htmlFor="email">
-            <p>Email</p>
-            <input
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@mail.com"
-            />
-          </label>
-          <label htmlFor="password">
-            <p>Password</p>
-            <input
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              type="password"
-              name="password"
-              id="password"
-              placeholder="password"
-            />
-          </label>
-          <button type="submit">Sign In</button>
+          <FormControls
+            label="Email"
+            type="email"
+            id="email"
+            value={email}
+            setValue={setEmail}
+          />
+          <FormControls
+            label="Password"
+            type="password"
+            id="password"
+            value={password}
+            setValue={setPassword}
+          />
+          <div className="flex flex-col justify-between items-center my-5">
+            {/* Buttons Wrapper */}
+            <div className="flex flex-row-reverse items-center">
+              {/* Login */}
+              <button type="submit">
+                <RiLoginCircleLine
+                  type="submit"
+                  className="mx-auto ms-5 cursor-pointer"
+                  size={37}
+                  onClick={handleForm}
+                ></RiLoginCircleLine>
+              </button>
+
+              {/* Sign-up URL */}
+              <FaUser
+                className="cursor-pointer"
+                size={34}
+                onClick={handleSignUp}
+              ></FaUser>
+
+              {/* Google Sign In */}
+              <BsGoogle
+                className="mx-auto me-5 cursor-pointer"
+                size={34}
+                onClick={handleGoogleSignIn}
+              >
+                Google Sign-In
+              </BsGoogle>
+            </div>
+          </div>
         </form>
-        <button>
-          <Link href="/signup">Sign up</Link>
-        </button>
+        <p className="text-center">
+          Don't have an account? <Link href="/signup">Sign up</Link>
+        </p>
       </div>
     </div>
   );

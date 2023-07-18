@@ -1,7 +1,7 @@
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, use } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 import Sidebar from "@/components/Sidebar";
-import getGroupsByUser from '@/firebase/firestore/getGroupsByUser';
+import getGroupsByUser from "@/firebase/firestore/getGroupsByUser";
 import {
   collection,
   doc,
@@ -19,7 +19,10 @@ export default function MainLayout(props) {
   const [groups, setGroups] = useState([]);
   useEffect(() => {
     if (user) {
-      const q = query(collection(db, "groups"), where("users", "array-contains", user.uid));
+      const q = query(
+        collection(db, "groups"),
+        where("users", "array-contains", user.uid)
+      );
       const unsub = onSnapshot(q, (docsSnap) => {
         setGroups(docsSnap.docs.map((doc) => doc.data()));
       });
@@ -30,8 +33,20 @@ export default function MainLayout(props) {
 
   return (
     <div>
-      {sidebarOpen && <Sidebar groups={groups} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />}
-      <button onClick={() => setSidebarOpen(!sidebarOpen)}>{sidebarOpen ? 'Close' : 'Open'}</button>
+      {user && (
+        <>
+          <button onClick={() => setSidebarOpen(!sidebarOpen)}>
+            {sidebarOpen ? "Close" : "Open"}
+          </button>
+          {sidebarOpen && (
+            <Sidebar
+              groups={groups}
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
+            />
+          )}
+        </>
+      )}
       {children}
     </div>
   );
