@@ -9,6 +9,9 @@ html, body, :root {
   margin: auto;
   background-color: #f7fafc;
 }
+body {
+  overflow: hidden;
+}
 
 .btn {
   @apply px-4 py-2 text-2xl rounded-md shadow-md hover:shadow-lg bg-sky-300 hover:bg-sky-400 transition text-white font-bold;
