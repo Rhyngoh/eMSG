@@ -5,6 +5,7 @@ import { useAuthContext } from "@/context/AuthContext";
 import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Button from "./Button";
 
 export default function Navbar() {
   const { auth, user } = useAuthContext();
@@ -12,7 +13,24 @@ export default function Navbar() {
   console.log(auth, user);
   return (
     <>
-      <div className="flex flex-row-reverse justify-around lg:justify-between px-2 lg:px-10 py-10">
+      <div className="flex justify-around lg:justify-between px-2 lg:px-10 py-10">
+        {/* Sign Out Button */}
+        <div>
+          {!(pathname === "/signin" || pathname === "/signup") && (
+            <div>
+              {user ? (
+                <Button onClick={() => auth.signOut()}>
+                  Sign Out
+                </Button>
+              ) : (
+                <Link className="btn-4" href="/signin">
+                  Log in
+                </Link>
+              )}
+            </div>
+          )}
+        </div>
+
         {/* User Information */}
         <div className="text-sm  font-bold  text-left">
           {user && (
@@ -32,22 +50,7 @@ export default function Navbar() {
           eMessages Chat Room
         </div>
 
-        {/* Sign Out Button */}
-        <div>
-          {!(pathname === "/signin" || pathname === "/signup") && (
-            <div>
-              {user ? (
-                <button className="btn-4" onClick={() => auth.signOut()}>
-                  Sign Out
-                </button>
-              ) : (
-                <Link className="btn-4" href="/signin">
-                  Log in
-                </Link>
-              )}
-            </div>
-          )}
-        </div>
+        
       </div>
       <hr />
     </>
