@@ -1,6 +1,8 @@
 import React from 'react'
 
 function GroupsBar() {
+    
+
     const openSidebar = () => {
 
     }
@@ -18,7 +20,17 @@ function GroupsBar() {
                     <hr className="my-2 text-gray-600" />
                 </div>
 
-                <div className="p-2 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700"></div>
+                <div className="p-2 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700">
+                    <ul>
+                        <li>this</li>
+                        <li>is</li>
+                        <li>a</li>
+                        <li>temp</li>
+                        <li>list</li>
+                        <li>of</li>
+                        <li>nothing</li>
+                    </ul>
+                </div>
             </section>
         </>
     )
