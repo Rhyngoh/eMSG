@@ -33,6 +33,9 @@ export default function Home(props) {
       {user ? (
         <div>
           <div>Find a chat room!</div>
+          <InputField roomId="WdQ7uZ7PrPR2ua9HPEWh"/>
+          <InputField roomId="WdQ7uZ7PrPR2ua9HPEWh" messageId="rXUTbhT1882VhOKzsv1S" />
+
         </div>
       ) : (
         <div className="flex flex-col justify-center">

@@ -10,7 +10,7 @@ import getAllGroups from "@/firebase/firestore/getAllGroups";
 
 export default function Layout(props) {
   console.log("proop", props);
-  const { group: groupId } = props.params;
+  const { room: roomId } = props.params;
   const { auth, user } = useAuthContext();
   const router = useRouter();
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Layout(props) {
       {user && (
         <div className="flex flex-col justify-around items-center h-screen lg:flex-row-reverse lg:items-start">
           <div className="w-5/6">
-            <Messages groupId={groupId} />
+            <Messages roomId={roomId} />
           </div>
         </div>
       )}
