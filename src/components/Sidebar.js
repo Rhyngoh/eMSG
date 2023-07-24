@@ -31,7 +31,7 @@ export default function Sidebar(props) {
     //   </div>
     // </div>
 
-    <section className={`${active ? 'left-[0]' : 'left-[-80%]'} z-20 bg-gray-500 rounded-r-lg lg:rounded top-0 bottom-0 lg:left-0 shadow-lg transition-all delay-150 duration-500 p-2 w-4/5 ${mobileView ? 'fixed lg:hidden' : 'lg:w-full lg:h-full'} overflow-y-auto`}>
+    <section className={`flex flex-col ${active ? 'left-[0]' : 'left-[-80%]'} z-20 bg-gray-500 rounded-r-lg lg:rounded top-0 bottom-0 lg:left-0 shadow-lg transition-all delay-150 duration-500 p-2 w-4/5 ${mobileView ? 'fixed lg:hidden' : 'lg:w-full lg:h-full'} overflow-y-auto`}>
             <div className="text-gray-100 text-xl">
                 <div className="p-2.5 mt-1 flex justify-between">
                     <h1 className="font-bold text-gray-200">eMessages Chat Room</h1>
@@ -46,19 +46,28 @@ export default function Sidebar(props) {
                 <hr className="my-2 text-gray-600" />
             </div>
 
-            <div className="p-2 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700">
-                <ul>
-                    <li>this</li>
-                    <li>is</li>
-                    <li>a</li>
-                    <li>temp</li>
-                    <li>list</li>
-                    <li>of</li>
-                    <li>nothing</li>
+            <div className="mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer">
+                <ul className="w-full space-y-2">
+                    <li className="p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3">
+                      <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
+                      <span>Room 1</span>
+                    </li>
+                    <li className="p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3">
+                      <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
+                      <span>Room 2</span>
+                    </li>
+                    <li className="p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3">
+                      <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
+                      <span>Room 3</span>
+                    </li>
+                    <li className="p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3">
+                      <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
+                      <span>Room 4</span>
+                    </li>
                 </ul>
             </div>
 
-            <div>
+            <div className="mt-auto">
               <Button classOverwrite={'p-1'} onClick={() => auth.signOut()}>
                   Sign Out
               </Button>
