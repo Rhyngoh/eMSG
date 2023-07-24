@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -52,12 +53,12 @@ export const AuthContextProvider = ({ children }) => {
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" })
-    console.log(provider);
+    // console.log(provider);
     return signInWithPopup(auth, provider);
   }
   return (
     <AuthContext.Provider value={{ auth, user, login, logOut, signUp, googleSignIn }}>
-      {loading ? <div className="flex flex-col items-center py-10 font-bold text-5xl">Loading...</div> : children}
+      {loading ? <div className="flex flex-col items-center py-10 font-bold text-5xl"><Link href="/signin">Sign In</Link></div> : children}
     </AuthContext.Provider>
   );
 };

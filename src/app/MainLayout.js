@@ -33,7 +33,7 @@ export default function MainLayout(props) {
 
   return (
     <div>
-      {user && (
+      {/* {user && (
         <>
           <button onClick={() => setSidebarOpen(!sidebarOpen)}>
             {sidebarOpen ? "Close" : "Open"}
@@ -46,7 +46,7 @@ export default function MainLayout(props) {
             />
           )}
         </>
-      )}
+      )} */}
       {children}
     </div>
   );

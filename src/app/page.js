@@ -8,31 +8,42 @@ import getMessagesByUser from "./../firebase/firestore/getMessagesByUser";
 import InputField from "@/components/InputField";
 import Messages from "@/components/Messages";
 import { useRouter } from "next/navigation";
-// const fetchMap = new Map();
-// function queryClient(name, query) {
-//   console.log("query");
-//   if (!fetchMap.has(name)) {
-//     fetchMap.set(name, query());
-//   }
-//   return fetchMap.get(name);
-// }
+import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
+
 export default function Home(props) {
+  
+  const fetchMap = new Map();
+  function queryClient(name, query) {
+    // console.log("query");
+    if (!fetchMap.has(name)) {
+      fetchMap.set(name, query());
+    }
+    return fetchMap.get(name);
+  }
+
   const { auth, user } = useAuthContext();
-  console.log(auth, auth.signOut, user);
+
   const router = useRouter();
   const handleSignIn = () => {
     router.push('/signin');
   }
-  // const messages = use(
-  //   queryClient("hello", () => getMessagesByUser("qsKSi3lz12UrKQc3Ql1G"))
-  // );
-  // console.log("props", messages);
+
+  const messages = use(
+    queryClient("hello", () => getMessagesByUser("DwTGgEwuz0ZFiOElzPTkQ7Ekct22"))
+  );
+
+  console.log("Messages", messages);
+
   return (
-    <main className={styles.main}>
+    <div className='lg:flex lg:h-screen h-[90dvh]'>
+    <aside className="hidden lg:block lg:w-1/5 lg:h-full p-2">
+      <Sidebar mobileView={false}/>
+    </aside>
+    <main className={'flex flex-col justify-between items-center px-4 lg:p-10 h-[90dvh] lg:h-screen flex-1 lg:w-4/5'}>
       {user ? (
         <div>
-          <div>Find a chat room!</div>
+          <Messages groupId='1234' />
         </div>
       ) : (
         <div className="flex flex-col justify-center">
@@ -43,5 +54,6 @@ export default function Home(props) {
         </div>
       )}
     </main>
+      </div>
   );
 }

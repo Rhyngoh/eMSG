@@ -26,7 +26,7 @@ function Page() {
       toast.error("Sign up failed, please try again");
       return console.log(error);
     } else {
-      console.log(result);
+      // console.log(result);
       return router.push("/");
     }
   };

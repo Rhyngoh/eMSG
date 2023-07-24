@@ -29,7 +29,7 @@ function Page() {
     event.preventDefault();
 
     const { result, error } = await signIn(email, password);
-    console.log(result, error);
+    // console.log(result, error);
     if (error) {
       toast.error("Sign In Failed");
       return console.log("error", error);
@@ -37,7 +37,7 @@ function Page() {
 
     // else successful
     toast.success("Sign In Successful");
-    console.log(result);
+    // console.log(result);
     return router.push("/");
   };
   const handleSignUp = () => {

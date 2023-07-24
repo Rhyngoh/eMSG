@@ -20,7 +20,7 @@ export default function Messages(props) {
   const { user } = useAuthContext();
   const { groupId } = props;
   const [messages, setMessages] = useState([]);
-  console.log(props);
+  // console.log('Message Props: ', props);
   useEffect(() => {
     const q = query(
       collection(db, "messages"),
@@ -39,24 +39,26 @@ export default function Messages(props) {
       </div>
     );
   return (
-    <div className="flex flex-col justify-around items-center h-auto max-h-full lg:items-start shadow-xl">
-      <div className="bg-neutral-100 p-7 m-7 w-[95%] h-[400px] overflow-auto max-h-screen rounded-lg">
-        <div className="h-[400px]">
+    <div className="flex flex-col justify-around items-center w-full h-auto max-h-full lg:items-start">
+      <div className="bg-blue-100 px-8 py-5 w-full overflow-auto max-h-screen rounded-lg">
+        <div className="">
+          {console.log(messages)}
           {messages.map((message, i) => {
             let messageCreatedOn =
               message.createdOn &&
               format(message.createdOn.toDate(), "h:mm a d/M/y");
             return (
-              <div key={i}>
+              <div key={i} className="group/msg-item">
                 <p>{message.user}</p>
                 <p>{message.content}</p>
                 <p>{messageCreatedOn}</p>
+                <hr className="border-0 h-0.5 bg-slate-900 group-last:hidden"/>
               </div>
             );
           })}
         </div>
       </div>
-      <div className="flex justify-center items-center w-full">
+      <div className="flex justify-center items-center w-full h-[10dvh]">
         <InputField groupId={groupId} />
       </div>
     </div>

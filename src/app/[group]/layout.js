@@ -7,9 +7,10 @@ import InputField from "@/components/InputField";
 import Messages from "@/components/Messages";
 import { useRouter } from "next/navigation";
 import getAllGroups from "@/firebase/firestore/getAllGroups";
+import Sidebar from "@/components/Sidebar";
 
 export default function Layout(props) {
-  console.log("proop", props);
+  // console.log("proop", props);
   const { group: groupId } = props.params;
   const { auth, user } = useAuthContext();
   const router = useRouter();
@@ -18,19 +19,22 @@ export default function Layout(props) {
     if (user === null) {
       router.push("/signup");
     }
-  });
+  }, []);
 
-  console.log(router, props);
-  console.log(auth, auth.signOut, user);
+  // console.log(router, props);
+  // console.log(auth, auth.signOut, user);
   return (
     <>
-      {user && (
-        <div className="flex flex-col justify-around items-center h-screen lg:flex-row-reverse lg:items-start">
-          <div className="w-5/6">
-            <Messages groupId={groupId} />
+      <div className='lg:flex lg:h-screen h-[90dvh]'>
+        <aside className="hidden lg:block lg:w-1/5 lg:h-full p-2">
+          <Sidebar mobileView={false}/>
+        </aside>
+        {user && (
+          <div className="flex flex-col justify-between items-center px-4 lg:p-2 h-[90dvh] lg:h-screen flex-1 lg:w-4/5">
+              <Messages groupId={groupId} />
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 }
