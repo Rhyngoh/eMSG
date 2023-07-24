@@ -7,9 +7,10 @@ import { toast } from "react-hot-toast";
 import FormControls from "@/components/FormControls";
 import { FaUser } from "react-icons/fa";
 import { RiLoginCircleLine } from "react-icons/ri";
+import addUserToUsersCollection from "@/firebase/firestore/addUserToUsersCollection";
 
 function Page() {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -17,9 +18,9 @@ function Page() {
   const handleForm = async (event) => {
     event.preventDefault();
 
-    const { result, error } = await signUp(email, password, name);
+    const { result, error } = await signUp(email, password, username);
 
-    if (!name || !email || !password) {
+    if (!username || !email || !password) {
       toast.error("Please fill all fields");
       return;
     } else if (error) {
@@ -27,11 +28,9 @@ function Page() {
       return console.log(error);
     } else {
       console.log(result);
+      await addUserToUsersCollection(username, [], username, email, "");
       return router.push("/");
     }
-  };
-  const handleSignIn = () => {
-    router.push("/signin");
   };
   return (
     <div className="wrapper">
@@ -46,7 +45,7 @@ function Page() {
             label="Name"
             type="name"
             id="displayName"
-            value={name}
+            value={username}
             setValue={setName}
           />
           <FormControls

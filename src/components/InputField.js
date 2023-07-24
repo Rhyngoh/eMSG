@@ -5,12 +5,12 @@ import { useState, useEffect, use } from "react";
 import setMessagesByUser from "@/firebase/firestore/setMessagesByUser";
 import { useAuthContext } from "@/context/AuthContext";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import sendMessageToRoom from "@/firebase/firestore/sendMessageToRoom";
-import replyToMessage from "@/firebase/firestore/replyToMessage";
+// import sendMessageToRoom from "@/firebase/firestore/sendMessageToRoom";
+// import replyToMessage from "@/firebase/firestore/replyToMessage";
 
 export default function InputField(props) {
   const { user } = useAuthContext();
-  const { roomId, messageId } = props;
+  const { roomId, messageId, onSubmit } = props;
   const [inputValue, setInputValue] = useState("");
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -23,9 +23,11 @@ export default function InputField(props) {
 
     // setMessagesByUser(inputValue, groupId, user.uid);
     if (messageId) {
-      replyToMessage(inputValue, messageId, roomId, user.uid);
+      // replyToMessage(inputValue, messageId, roomId, user.uid);
+      onSubmit(inputValue, messageId, roomId, user.uid);
     } else {
-      sendMessageToRoom(inputValue, roomId, user.uid);
+      // sendMessageToRoom(inputValue, roomId, user.uid);
+      onSubmit(inputValue, roomId, user.uid);
     }
     setInputValue('');
   }

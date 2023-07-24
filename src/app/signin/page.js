@@ -9,16 +9,22 @@ import { FaUser } from "react-icons/fa";
 import { RiLoginCircleLine } from "react-icons/ri";
 import Link from "next/link";
 import { useAuthContext } from "@/context/AuthContext";
+import getUserFromUsersCollection from "@/firebase/firestore/getUserFromUsersCollection";
 function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const { googleSignIn, login } = useAuthContext();
+  const { googleSignIn, login, auth } = useAuthContext();
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
     try {
-      await googleSignIn();
-      router.push("/");
+      let result = await googleSignIn();
+      console.log(result);
+      if (result?.user) {
+        let { res, error } = await getUserFromUsersCollection(result?.user);
+        console.log('res', res);
+      }
+      // router.push("/");
     } catch (e) {
       console.log(e);
       toast.error("Google Sign Up Failed");
