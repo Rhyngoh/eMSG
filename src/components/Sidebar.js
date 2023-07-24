@@ -31,7 +31,7 @@ export default function Sidebar(props) {
     //   </div>
     // </div>
 
-    <section className={`flex flex-col ${active ? 'left-[0]' : 'left-[-80%]'} z-20 bg-gray-500 rounded-r-lg lg:rounded top-0 bottom-0 lg:left-0 shadow-lg transition-all delay-150 duration-500 p-2 w-4/5 ${mobileView ? 'fixed lg:hidden' : 'lg:w-full lg:h-full'} overflow-y-auto`}>
+    <section className={`flex flex-col ${active ? 'left-[0]' : 'left-[-80%]'} z-20  rounded-r-lg lg:rounded top-0 bottom-0 lg:left-0 transition-all delay-150 duration-500 p-2 w-4/5 ${mobileView ? 'fixed lg:hidden' : 'lg:w-full lg:h-full'} overflow-y-auto`}>
             <div className="text-gray-100 text-xl">
                 <div className="p-2.5 mt-1 flex justify-between">
                     <h1 className="font-bold text-gray-200">eMessages Chat Room</h1>

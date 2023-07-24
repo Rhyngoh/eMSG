@@ -39,8 +39,8 @@ export default function Messages(props) {
       </div>
     );
   return (
-    <div className="flex flex-col justify-around items-center w-full h-auto max-h-full lg:items-start">
-      <div className="bg-blue-100 px-8 py-5 w-full overflow-auto lg:min-h-[90dvh] rounded-lg">
+    <div className="bg-gray-700 rounded-lg shadow-lg flex flex-col justify-around items-center w-full h-auto max-h-full lg:items-start">
+      <div className="px-8 py-5 w-full overflow-auto lg:min-h-[90dvh]">
         <div className="space-y-5">
               <div className="flex gap-3 relative last:after:hidden after:contents-[''] after:absolute after:-bottom-1.5 after:left-0 after:w-full after:h-0.5 after:bg-black">
                 <img src={'https://picsum.photos/300'} width='40' height='40' className="inline w-10 h-10 rounded-full object-center"/>
@@ -53,7 +53,7 @@ export default function Messages(props) {
                 <img src={'https://picsum.photos/300'} width='40' height='40' className="inline w-10 h-10 rounded-full object-center"/>
                 <div>
                   <h3 className="text-xl">User <span className="text-sm">{new Date().toLocaleDateString()}</span></h3>
-                  <p>This is a message</p>                  
+                  <p>This is a message, but it's really long. I made this one this long on purpose so that I can see how a message would wrap in a situation like this. I think that this message has enough characters in it now. Yeah, I think so.</p>                  
                 </div>                
               </div>
               <div className="flex gap-3 relative last:after:hidden after:contents-[''] after:absolute after:-bottom-1.5 after:left-0 after:w-full after:h-0.5 after:bg-black">

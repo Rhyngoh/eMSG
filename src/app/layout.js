@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} /> */}
         <link rel="icon" href="@/app/favicon.ico" />
       </Head>
-      <body className={montserrat.className + ' bg-gray-600'}>
+      <body className={montserrat.className + ' bg-gray-900'}>
         <AuthContextProvider>
           <Navbar />
             {children}
