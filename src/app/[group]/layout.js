@@ -15,7 +15,7 @@ export default function Layout(props) {
   const { auth, user } = useAuthContext();
   const router = useRouter();
   useEffect(() => {
-    console.log(auth, user);
+    // console.log(auth, user);
     if (user === null) {
       router.push("/signup");
     }

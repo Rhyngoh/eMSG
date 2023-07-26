@@ -7,12 +7,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import getGroupsByUser from "@/firebase/firestore/getGroupsByUser";
 import Button from "./Button";
+import RoomButton from "./RoomButton";
 
 export default function Sidebar(props) {
-  const { auth, user } = useAuthContext();
+  const { auth, user, currentRoom, setCurrentRoom } = useAuthContext();
   const { groups, active, setActive, mobileView } = props;
   const pathname = usePathname();
   // console.log(auth, user, groups);
+
   return (
     // <div className="mb-10 max-w-md absolute left-0 top-px-100 bg-white">
     //   <div className="border-x-red-300 lg:border-x-8 lg:px-7 lg:h-screen rounded-xl">
@@ -48,22 +50,10 @@ export default function Sidebar(props) {
 
             <div className="mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer">
                 <ul className="w-full space-y-2">
-                    <li className={`${false && '!bg-slate-500'} bg-slate-300 p-2  hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3`}>
-                      <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
-                      <span>Room 1</span>
-                    </li>
-                    <li className={`${false && '!bg-slate-500'} p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3`}>
-                      <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
-                      <span>Room 2</span>
-                    </li>
-                    <li className={`${false && '!bg-slate-500'} p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3`}>
-                      <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
-                      <span>Room 3</span>
-                    </li>
-                    <li className={`${false && '!bg-slate-500'} p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3`}>
-                      <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
-                      <span>Room 4</span>
-                    </li>
+                    <RoomButton name={'Room 1'} roomId={'123'} />
+                    <RoomButton name={'Room 2'} roomId={'456'} />
+                    <RoomButton name={'Room 3'} roomId={'879'} />
+                    <RoomButton name={'Room 4'} roomId={'741'} />
                 </ul>
             </div>
 

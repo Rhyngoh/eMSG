@@ -22,15 +22,14 @@ export const useAuthContext = () => React.useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
+  const [currentRoom, setCurrentRoom] = React.useState('123')
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       // console.log('User, Auth: ', {user,auth})
       if (user) {
-        console.log('User is set to:', user)
         setUser(user);
       } else {
-        console.log('User could not be set to:', user)
         setUser(null);
       }
       setLoading(false);
@@ -60,7 +59,7 @@ export const AuthContextProvider = ({ children }) => {
     return signInWithPopup(auth, provider);
   }
   return (
-    <AuthContext.Provider value={{ auth, user, login, logOut, signUp, googleSignIn }}>
+    <AuthContext.Provider value={{ auth, user, login, logOut, signUp, googleSignIn, currentRoom, setCurrentRoom }}>
       {loading ? <div className="flex flex-col items-center py-10 font-bold text-5xl">
         <Link href="/signin">
           Loading: {`${loading}`}

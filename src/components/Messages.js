@@ -38,6 +38,7 @@ export default function Messages(props) {
         Loading...
       </div>
     );
+
   return (
     <div className="bg-gray-700 rounded-lg shadow-lg flex flex-col justify-around items-center w-full h-auto max-h-full lg:items-start">
       <div className="px-8 py-5 w-full overflow-auto lg:min-h-[90dvh]">
@@ -63,7 +64,6 @@ export default function Messages(props) {
                   <p>This is a message</p>                  
                 </div>                
               </div>
-          {console.log(messages)}
           {messages && messages.map((message, i) => {
             let messageCreatedOn =
               message.createdOn &&

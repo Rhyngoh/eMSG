@@ -34,7 +34,7 @@ export default function Home(props) {
   // );
 
   // console.log("Messages", messages);
-  console.log("User", user);
+  // console.log("User", user);
 
   return (
     <div className='lg:flex lg:h-screen h-[90dvh]'>
