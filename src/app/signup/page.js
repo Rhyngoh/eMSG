@@ -46,7 +46,7 @@ function Page() {
             type="name"
             id="displayName"
             value={username}
-            setValue={setName}
+            setValue={setUsername}
           />
           <FormControls
             label="Email"
