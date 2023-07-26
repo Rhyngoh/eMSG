@@ -29,22 +29,21 @@ export default function Home(props) {
     router.push('/signin');
   }
 
-  const messages = use(
-    queryClient("hello", () => getMessagesByUser("DwTGgEwuz0ZFiOElzPTkQ7Ekct22"))
-  );
+  // const messages = use(
+  //   // queryClient("hello", () => getMessagesByUser("DwTGgEwuz0ZFiOElzPTkQ7Ekct22"))
+  // );
 
-  console.log("Messages", messages);
+  // console.log("Messages", messages);
+  console.log("User", user);
 
   return (
     <div className='lg:flex lg:h-screen h-[90dvh]'>
     <aside className="hidden lg:block lg:w-1/5 lg:h-full p-2">
       <Sidebar mobileView={false}/>
     </aside>
-    <main className={'flex flex-col justify-between items-center px-4 lg:p-10 h-[90dvh] lg:h-screen flex-1 lg:w-4/5'}>
+    <main className={'flex flex-col justify-between items-center px-4 lg:p-2 h-[90dvh] lg:h-screen flex-1 lg:w-4/5'}>
       {user ? (
-        <div>
           <Messages groupId='1234' />
-        </div>
       ) : (
         <div className="flex flex-col justify-center">
           <p>Welcome to eMSG</p>

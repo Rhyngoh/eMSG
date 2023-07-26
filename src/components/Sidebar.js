@@ -31,7 +31,7 @@ export default function Sidebar(props) {
     //   </div>
     // </div>
 
-    <section className={`flex flex-col ${active ? 'left-[0]' : 'left-[-80%]'} z-20  rounded-r-lg lg:rounded top-0 bottom-0 lg:left-0 transition-all delay-150 duration-500 p-2 w-4/5 ${mobileView ? 'fixed lg:hidden' : 'lg:w-full lg:h-full'} overflow-y-auto`}>
+    <section className={`flex flex-col ${active ? 'left-[0] before:left-0' : 'left-[-80%] before:left-[100%] before:hidden'} z-20  rounded-r-lg lg:rounded top-0 bottom-0 lg:left-0 transition-all delay-150 duration-500 p-2 w-4/5 ${mobileView ? 'fixed lg:hidden bg-gray-700 overflow-y-visible before:contents-[""] before:w-screen before:h-screen before:bg-gray-600 before:absolute before:left-0 before:top-0 before:-z-20 before:opacity-50 before:blur-md' : 'before:hidden lg:w-full lg:h-full overflow-y-auto'} `}>
             <div className="text-gray-100 text-xl">
                 <div className="p-2.5 mt-1 flex justify-between">
                     <h1 className="font-bold text-gray-200">eMessages Chat Room</h1>
@@ -48,19 +48,19 @@ export default function Sidebar(props) {
 
             <div className="mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer">
                 <ul className="w-full space-y-2">
-                    <li className="p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3">
+                    <li className={`${false && '!bg-slate-500'} bg-slate-300 p-2  hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3`}>
                       <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
                       <span>Room 1</span>
                     </li>
-                    <li className="p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3">
+                    <li className={`${false && '!bg-slate-500'} p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3`}>
                       <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
                       <span>Room 2</span>
                     </li>
-                    <li className="p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3">
+                    <li className={`${false && '!bg-slate-500'} p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3`}>
                       <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
                       <span>Room 3</span>
                     </li>
-                    <li className="p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3">
+                    <li className={`${false && '!bg-slate-500'} p-2 bg-slate-300 hover:bg-slate-400 transition-colors shadow-md rounded block w-full space-x-3`}>
                       <img src={'https://picsum.photos/300'} width={300} height={300} className="ring-1 w-10 inline rounded-full object-center"/>
                       <span>Room 4</span>
                     </li>

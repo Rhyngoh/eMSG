@@ -25,9 +25,12 @@ export const AuthContextProvider = ({ children }) => {
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      // console.log('User, Auth: ', {user,auth})
       if (user) {
+        console.log('User is set to:', user)
         setUser(user);
       } else {
+        console.log('User could not be set to:', user)
         setUser(null);
       }
       setLoading(false);
@@ -58,7 +61,11 @@ export const AuthContextProvider = ({ children }) => {
   }
   return (
     <AuthContext.Provider value={{ auth, user, login, logOut, signUp, googleSignIn }}>
-      {loading ? <div className="flex flex-col items-center py-10 font-bold text-5xl"><Link href="/signin">Sign In</Link></div> : children}
+      {loading ? <div className="flex flex-col items-center py-10 font-bold text-5xl">
+        <Link href="/signin">
+          Loading: {`${loading}`}
+          </Link>
+        </div> : children}
     </AuthContext.Provider>
   );
 };
