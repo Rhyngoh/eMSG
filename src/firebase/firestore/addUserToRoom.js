@@ -21,7 +21,7 @@ export default async function addUserToRoom(
   documentBody.display_name = displayName;
   documentBody.roles = roles;
   documentBody.permissions = permissions;
-  console.log("documentBody", documentBody);
+  // console.log("documentBody", documentBody);
   if (!roomId) return { error: 'roomId is required' };
 
   try {
@@ -29,7 +29,7 @@ export default async function addUserToRoom(
     await setDoc(docRef, { ...documentBody, id: docRef.id });
     result = "success";
   } catch (e) {
-    console.log("error", e);
+    // console.log("error", e);
     error = e;
   }
 

@@ -25,9 +25,9 @@ function Page() {
       return;
     } else if (error) {
       toast.error("Sign up failed, please try again");
-      return console.log(error);
+      return // console.log(error);
     } else {
-      console.log(result);
+      // console.log(result);
       await addUserToUsersCollection(username, [], username, email, "");
       return router.push("/");
     }

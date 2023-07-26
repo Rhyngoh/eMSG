@@ -20,11 +20,11 @@ export default function MainLayout(props) {
   const [isSubbed, setIsSubbed] = useState(false);
   useEffect(() => {
     let unsub = () => {};
-    console.log('useEffect', isSubbed, sidebarOpen, user);
+    // // console.log('useEffect', isSubbed, sidebarOpen, user);
     if (isSubbed) return;
     if (sidebarOpen) {
       if (user) {
-        console.log('sub to groups');
+        // // console.log('sub to groups');
         const q = query(
           collection(db, "groups"),
           where("users", "array-contains", user.uid)
@@ -35,17 +35,17 @@ export default function MainLayout(props) {
         setIsSubbed(true);
       }
     } else {
-      console.log('sidebar closed');
+      // // console.log('sidebar closed');
       unsub();
       setIsSubbed(false);
     }
     return () => {
-      console.log('clean up');
+      // // console.log('clean up');
       unsub();
       setIsSubbed(false);
     };
   }, [user, sidebarOpen]);
-  console.log(groups);
+  // // console.log(groups);
 
   return (
     <div>

@@ -9,19 +9,19 @@ import { useRouter } from "next/navigation";
 import getAllGroups from "@/firebase/firestore/getAllGroups";
 
 export default function Layout(props) {
-  console.log("proop", props);
+  // console.log("proop", props);
   const { room: roomId } = props.params;
   const { auth, user } = useAuthContext();
   const router = useRouter();
   useEffect(() => {
-    console.log(auth, user);
+    // console.log(auth, user);
     if (user === null) {
       router.push("/signup");
     }
   });
 
-  console.log(router, props);
-  console.log(auth, auth.signOut, user);
+  // console.log(router, props);
+  // console.log(auth, auth.signOut, user);
   return (
     <>
       {user && (

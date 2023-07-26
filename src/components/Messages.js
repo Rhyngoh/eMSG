@@ -21,7 +21,7 @@ export default function Messages(props) {
   const { roomId } = props;
   const [messages, setMessages] = useState([]);
   const messageEndRef = useRef(null);
-  console.log(props);
+  // console.log(props);
   useEffect(() => {
     const q = query(
       collection(db, "messages"),
