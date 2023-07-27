@@ -15,24 +15,26 @@ import {
 import { db } from "./../firebase/firebase.config.js";
 import format from "date-fns/format";
 import InputField from "./InputField.js";
+import { useRoomsContext } from "@/context/RoomsContext.js";
 
 export default function Messages(props) {
   const { user } = useAuthContext();
   const { roomId } = props;
-  const [messages, setMessages] = useState([]);
+  const { messages } = useRoomsContext();
+  // const [messages, setMessages] = useState([]);
   const messageEndRef = useRef(null);
   // console.log(props);
-  useEffect(() => {
-    const q = query(
-      collection(db, "messages"),
-      where("room", "==", roomId),
-      orderBy("createdOn", "asc")
-    );
-    const unsub = onSnapshot(q, (docsSnap) => {
-      setMessages(docsSnap.docs.map((doc) => doc.data()));
-    });
-    return unsub;
-  }, []);
+  // useEffect(() => {
+  //   const q = query(
+  //     collection(db, "messages"),
+  //     where("room", "==", roomId),
+  //     orderBy("createdOn", "asc")
+  //   );
+  //   const unsub = onSnapshot(q, (docsSnap) => {
+  //     setMessages(docsSnap.docs.map((doc) => doc.data()));
+  //   });
+  //   return unsub;
+  // }, []);
   useEffect(() => {
       messageEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
       // messageEndRef.current?.scrollIntoView({ behavior: "smooth" });

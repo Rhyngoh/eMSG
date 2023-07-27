@@ -11,6 +11,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import { db } from "./../firebase/firebase.config.js";
+import { useRoomsContext } from "@/context/RoomsContext.js";
 
 export default function MainLayout(props) {
   // const [groups, setGroups] = useState([]);
@@ -18,34 +19,35 @@ export default function MainLayout(props) {
   const { children, sidebarOpen, setSidebarOpen } = props;
   const [groups, setGroups] = useState([]);
   const [isSubbed, setIsSubbed] = useState(false);
-  useEffect(() => {
-    let unsub = () => {};
-    // // console.log('useEffect', isSubbed, sidebarOpen, user);
-    if (isSubbed) return;
-    if (sidebarOpen) {
-      if (user) {
-        // // console.log('sub to groups');
-        const q = query(
-          collection(db, "groups"),
-          where("users", "array-contains", user.uid)
-        );
-        unsub = onSnapshot(q, (docsSnap) => {
-          setGroups(docsSnap.docs.map((doc) => doc.data()));
-        });
-        setIsSubbed(true);
-      }
-    } else {
-      // // console.log('sidebar closed');
-      unsub();
-      setIsSubbed(false);
-    }
-    return () => {
-      // // console.log('clean up');
-      unsub();
-      setIsSubbed(false);
-    };
-  }, [user, sidebarOpen]);
+  // useEffect(() => {
+  //   let unsub = () => {};
+  //   // // console.log('useEffect', isSubbed, sidebarOpen, user);
+  //   if (isSubbed) return;
+  //   if (sidebarOpen) {
+  //     if (user) {
+  //       // // console.log('sub to groups');
+  //       const q = query(
+  //         collection(db, "groups"),
+  //         where("users", "array-contains", user.uid)
+  //       );
+  //       unsub = onSnapshot(q, (docsSnap) => {
+  //         setGroups(docsSnap.docs.map((doc) => doc.data()));
+  //       });
+  //       setIsSubbed(true);
+  //     }
+  //   } else {
+  //     // // console.log('sidebar closed');
+  //     unsub();
+  //     setIsSubbed(false);
+  //   }
+  //   return () => {
+  //     // // console.log('clean up');
+  //     unsub();
+  //     setIsSubbed(false);
+  //   };
+  // }, [user, sidebarOpen]);
   // // console.log(groups);
+  const { rooms } = useRoomsContext();
 
   return (
     <div>
@@ -56,9 +58,9 @@ export default function MainLayout(props) {
           </button>
           {sidebarOpen && (
             <Sidebar
-              groups={groups}
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setSidebarOpen}
+              // groups={rooms}
+              // sidebarOpen={sidebarOpen}
+              // setSidebarOpen={setSidebarOpen}
             />
           )}
         </>

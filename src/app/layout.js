@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import { useState, useEffect } from 'react';
 import MainLayout from "./MainLayout";
 import Head from "next/head";
+import { RoomsContextProvider } from "@/context/RoomsContext";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -29,10 +30,12 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={montserrat.className}>
         <AuthContextProvider>
+          <RoomsContextProvider>
           <Navbar />
           <MainLayout sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen}>
             {children}
           </MainLayout>
+          </RoomsContextProvider>
         </AuthContextProvider>
         <Toaster />
       </body>

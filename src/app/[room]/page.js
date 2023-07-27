@@ -10,12 +10,12 @@ import getAllGroups from "@/firebase/firestore/getAllGroups";
 import Layout from "./layout";
 
 // NOTE: This is probably not necessary since almost everything is client-side fetched
-export async function generateStaticParams() {
-  let groups = await getAllGroups();
-  // console.log('================================')
-  // console.log(groups);
-  return groups.result ? groups.result.map(el => ({ groups: el.id })) : []
-}
+// export async function generateStaticParams() {
+//   let groups = await getAllGroups();
+//   // console.log('================================')
+//   // console.log(groups);
+//   return groups.result ? groups.result.map(el => ({ groups: el.id })) : []
+// }
 export default function Page({ params }) {
   // console.log('Group page props', params);
   // const { auth, user } = useAuthContext();
