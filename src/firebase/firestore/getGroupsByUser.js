@@ -11,20 +11,20 @@ import {
 export default async function getGroupsByUser(userId) {
   let result = null;
   let error = null;
-  console.log("getMessagesByuser", result);
+  // console.log("getMessagesByuser", result);
   try {
-    console.log("db", db, userId);
+    // console.log("db", db, userId);
     const q = query(collection(db, "groups"), where("users", "array-contains", userId));
-    console.log("q", q);
+    // console.log("q", q);
     const querySnapshot = await getDocs(q);
-    console.log("querySnapshot", querySnapshot);
+    // console.log("querySnapshot", querySnapshot);
     const messagesList = querySnapshot.docs.map((doc) => doc.data());
-    console.log("messagesList", messagesList);
+    // console.log("messagesList", messagesList);
     result = messagesList;
   } catch (e) {
-    console.log("error", e);
+    // console.log("error", e);
     error = e;
   }
-  // console.log('results', result)
+  // // console.log('results', result)
   return { result, error };
 }

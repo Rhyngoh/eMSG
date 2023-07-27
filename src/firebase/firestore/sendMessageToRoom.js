@@ -7,22 +7,23 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import message from "../schema/message.js";
+import messagesDocument
+ from "../schema/RoomsCollection/MessagesCollection/MessagesDocument.js";
 
-export default async function setMessagesByUser(
+ export default async function sendMessageToRoom(
   messageContents,
-  groupId,
+  roomId,
   userId
 ) {
   let result = null;
   let error = null;
-  let messageBody = message;
+  let messageBody = messagesDocument;
   messageBody.content = messageContents;
-  messageBody.group = groupId;
-  messageBody.user = userId;
+  messageBody.room_id = roomId;
+  messageBody.user_id = userId;
   // console.log("messageBody", messageBody);
   try {
-    const docRef = doc(collection(db, "messages"));
+    const docRef = doc(collection(db, "rooms", `${roomId}`, "messages"));
     await setDoc(docRef, { ...messageBody, id: docRef.id });
     result = "success";
   } catch (e) {
