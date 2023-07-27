@@ -52,9 +52,8 @@ export const RoomsContextProvider = ({ children }) => {
   // When RoomID changes, fetch messages
   useEffect(() => {
     const q = query(
-      collection(db, "messages"),
-      where("room", "==", roomId),
-      orderBy("createdOn", "asc")
+      collection(db, "rooms", `${roomId}`, "messages"),
+      orderBy("created_on", "asc")
     );
     const unsub = onSnapshot(q, (docsSnap) => {
       setMessages(docsSnap.docs.map((doc) => doc.data()));

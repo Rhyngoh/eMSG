@@ -16,18 +16,8 @@ import Layout from "./layout";
 //   // console.log(groups);
 //   return groups.result ? groups.result.map(el => ({ groups: el.id })) : []
 // }
-export default function Page({ params }) {
-  // console.log('Group page props', params);
-  // const { auth, user } = useAuthContext();
-  // const router = useRouter();
-  // // console.log(router, props);
-  // // console.log(auth, auth.signOut, user);
-
-  // const messages = use(
-  //   queryClient("hello", () => getMessagesByUser("qsKSi3lz12UrKQc3Ql1G"))
-  // );
-  // // console.log("props", messages);
+export default function Page() {
   return (
-    <Layout groupId={params.group} paramz={params}/>
+    <Layout />
   );
 }
