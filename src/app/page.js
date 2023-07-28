@@ -8,21 +8,13 @@ import getMessagesByUser from "./../firebase/firestore/getMessagesByUser";
 import InputField from "@/components/InputField";
 import Messages from "@/components/Messages";
 import { useRouter } from "next/navigation";
-// const fetchMap = new Map();
-// function queryClient(name, query) {
-//   // console.log("query");
-//   if (!fetchMap.has(name)) {
-//     fetchMap.set(name, query());
-//   }
-//   return fetchMap.get(name);
-// }
 import Link from "next/link";
 import sendMessageToRoom from "@/firebase/firestore/sendMessageToRoom";
 import replyToMessage from "@/firebase/firestore/replyToMessage";
 import getUserFromUsersCollection from "@/firebase/firestore/getUserFromUsersCollection";
 
 export default function Home(props) {
-  const { auth, user } = useAuthContext();
+  const { user } = useAuthContext();
   // // console.log(auth, auth.signOut, user);
   const router = useRouter();
   // useEffect(() => {
@@ -36,10 +28,7 @@ export default function Home(props) {
   const handleSignIn = () => {
     router.push('/signin');
   }
-  // const messages = use(
-  //   queryClient("hello", () => getMessagesByUser("qsKSi3lz12UrKQc3Ql1G"))
-  // );
-  // // console.log("props", messages);
+
   return (
     <main className={styles.main}>
       {user ? (
