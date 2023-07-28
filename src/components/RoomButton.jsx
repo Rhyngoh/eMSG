@@ -2,7 +2,7 @@ import React from "react";
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useRoomsContext } from "@/context/RoomsContext";
-function RoomButton({ name, roomId }) {
+function RoomButton({ name, roomId, roomPicture }) {
   // const {currentRoom, setCurrentRoom } = useAuthContext();
   const router = useRouter();
   const { currentRoomId } = useRoomsContext();
@@ -14,7 +14,6 @@ function RoomButton({ name, roomId }) {
 
     // setCurrentRoom(e.target.id)
   };
-  console.log(name);
   return (
     <li
       onClick={handleClick}
@@ -25,7 +24,7 @@ function RoomButton({ name, roomId }) {
       key={roomId}
     >
       <img
-        src={"https://picsum.photos/300"}
+        src={roomPicture || "https://picsum.photos/300"}
         width={300}
         height={300}
         className="ring-1 w-10 inline rounded-full object-center"

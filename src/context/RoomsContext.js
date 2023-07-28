@@ -33,7 +33,7 @@ export const RoomsContextProvider = ({ children }) => {
       return;
     } 
 
-    // // console.log('sub to groups');
+    // console.log('sub to groups');
     const q = query(
       collection(db, "rooms"),
       where("users", "array-contains", user.uid)
@@ -48,6 +48,9 @@ export const RoomsContextProvider = ({ children }) => {
       setIsSubbed(false);
     }
   }, [user]);
+  useEffect(() => {
+
+  }, [])
 
   // When RoomID changes, fetch messages
   useEffect(() => {

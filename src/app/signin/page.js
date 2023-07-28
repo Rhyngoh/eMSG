@@ -19,14 +19,14 @@ function Page() {
     e.preventDefault();
     try {
       let result = await googleSignIn();
-      // // console.log(result);
+      // console.log(result);
       if (result?.user) {
         let { res, error } = await getUserFromUsersCollection(result?.user);
-        // // console.log('res', res);
+        // console.log('res', res);
       }
       router.push("/");
     } catch (e) {
-      // // console.log(e);
+      // console.log(e);
       toast.error("Google Sign Up Failed");
       return;
     }

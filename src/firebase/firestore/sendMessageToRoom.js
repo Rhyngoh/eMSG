@@ -21,13 +21,13 @@ import messagesDocument
   messageBody.content = messageContents;
   messageBody.room_id = roomId;
   messageBody.user_id = userId;
-  // // console.log("messageBody", messageBody);
+  // console.log("messageBody", messageBody);
   try {
     const docRef = doc(collection(db, "rooms", `${roomId}`, "messages"));
     await setDoc(docRef, { ...messageBody, id: docRef.id });
     result = "success";
   } catch (e) {
-    // // console.log("error", e);
+    // console.log("error", e);
     error = e;
   }
 

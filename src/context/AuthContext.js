@@ -41,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" })
-    console.log(provider);
+    // // console.log(provider);
     return signInWithPopup(auth, provider);
   }
   return (

@@ -5,7 +5,6 @@ import { useAuthContext } from "@/context/AuthContext";
 import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import getGroupsByUser from "@/firebase/firestore/getGroupsByUser";
 import Button from "./Button";
 import RoomButton from "./RoomButton";
 import { useRoomsContext } from "@/context/RoomsContext";
@@ -44,7 +43,7 @@ export default function Sidebar(props) {
         <ul className="w-full space-y-2">
           {rooms.length > 0 &&
             rooms.map((room) => {
-              return <RoomButton name={room.name} roomId={room.id} />;
+              return <RoomButton name={room.name} roomId={room.id} roomPicture={room.room_picture} />;
             })}
           {/* <RoomButton name={'Room 1'} roomId={'123'} />
                     <RoomButton name={'Room 2'} roomId={'456'} />

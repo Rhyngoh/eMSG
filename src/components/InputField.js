@@ -10,7 +10,7 @@ import { BsFillArrowRightCircleFill } from "react-icons/bs";
 
 export default function InputField(props) {
   const { user } = useAuthContext();
-  const { roomId, messageId, onSubmit } = props;
+  const { roomId, messageId, onSubmit, addRoom, roomPicture } = props;
   const [inputValue, setInputValue] = useState("");
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -25,6 +25,8 @@ export default function InputField(props) {
     if (messageId) {
       // replyToMessage(inputValue, messageId, roomId, user.uid);
       onSubmit(inputValue, messageId, roomId, user.uid);
+    } else if (addRoom) {
+      onSubmit(inputValue, false, roomPicture, user.uid);
     } else {
       // sendMessageToRoom(inputValue, roomId, user.uid);
       onSubmit(inputValue, roomId, user.uid);

@@ -24,7 +24,7 @@ export default async function addUserToUsersCollection(
   documentBody.username = username;
   documentBody.email = email;
   documentBody.profile_pic = profilePic;
-  // // console.log("documentBody", documentBody);
+  // console.log("documentBody", documentBody);
   if (!username) return { error: 'username is required' };
   if (!email) return { error: 'email is required' };
 
@@ -33,7 +33,7 @@ export default async function addUserToUsersCollection(
     await setDoc(docRef, { ...documentBody, id: docRef.id });
     result = "success";
   } catch (e) {
-    // // console.log("error", e);
+    // console.log("error", e);
     error = e;
   }
 

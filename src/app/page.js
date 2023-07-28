@@ -13,6 +13,7 @@ import Link from "next/link";
 import sendMessageToRoom from "@/firebase/firestore/sendMessageToRoom";
 import replyToMessage from "@/firebase/firestore/replyToMessage";
 import getUserFromUsersCollection from "@/firebase/firestore/getUserFromUsersCollection";
+import createRoom from "@/firebase/firestore/createRoom";
 
 export default function Home(props) {
   const { user } = useAuthContext();
@@ -32,7 +33,8 @@ export default function Home(props) {
           <div>Find a chat room!</div>
           <InputField roomId="WdQ7uZ7PrPR2ua9HPEWh" onSubmit={sendMessageToRoom} />
           <InputField roomId="WdQ7uZ7PrPR2ua9HPEWh" messageId="rXUTbhT1882VhOKzsv1S" onSubmit={replyToMessage} />
-
+          <p>Create a room</p>
+          <InputField addRoom={true} roomPicture="https://picsum.photos/200/300" onSubmit={createRoom} />
         </div>
       ) : (
         <div className="flex flex-col justify-center">
