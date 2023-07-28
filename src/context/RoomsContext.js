@@ -18,7 +18,7 @@ export const useRoomsContext = () => React.useContext(RoomsContext);
 
 export const RoomsContextProvider = ({ children }) => {
   const { user } = useAuthContext();
-  const [roomId, setRoomId] = useState(null);
+  const [currentRoomId, setCurrentRoomId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [isSubbed, setIsSubbed] = useState(false);
@@ -52,16 +52,16 @@ export const RoomsContextProvider = ({ children }) => {
   // When RoomID changes, fetch messages
   useEffect(() => {
     const q = query(
-      collection(db, "rooms", `${roomId}`, "messages"),
+      collection(db, "rooms", `${currentRoomId}`, "messages"),
       orderBy("created_on", "asc")
     );
     const unsub = onSnapshot(q, (docsSnap) => {
       setMessages(docsSnap.docs.map((doc) => doc.data()));
     });
     return unsub;
-  }, [roomId]);
+  }, [currentRoomId]);
   return (
-    <RoomsContext.Provider value={{ roomId, setRoomId, messages, rooms }}>
+    <RoomsContext.Provider value={{ currentRoomId, setCurrentRoomId, messages, rooms }}>
       {children}
     </RoomsContext.Provider>
   );

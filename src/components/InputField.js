@@ -32,9 +32,9 @@ export default function InputField(props) {
     setInputValue('');
   }
   return (
-    <form onSubmit={handleSubmit} className="my-10 h-4/6 w-5/6">
+    <form onSubmit={handleSubmit} className="h-4/6 w-full px-5">
       <div className="flex flex-col items-center">
-        <div className="w-full max-w-lg flex flex-row-reverse items-center justify-between">
+        <div className="w-full flex flex-row-reverse items-center justify-between">
           <BsFillArrowRightCircleFill
             onClick={handleSubmit}
             className="cursor-pointer"

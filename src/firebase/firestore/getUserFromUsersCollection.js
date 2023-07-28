@@ -11,7 +11,7 @@ import addUserToUsersCollection from "./addUserToUsersCollection.js";
 export default async function getUserFromUsersCollection(user) {
   let result = null;
   let error = null;
-  // // console.log(user);
+  console.log(user);
   try {
     // const q = query(collection(db, "users"));
     const docRef = doc(db, "users", user.uid);
@@ -28,7 +28,7 @@ export default async function getUserFromUsersCollection(user) {
     }
     // // console.log("querySnapshot", querySnapshot);
   } catch (e) {
-    // // console.log("error", e);
+    console.error("error", e);
     error = e;
   }
   // // // console.log('results', result)

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -21,9 +22,11 @@ export const useAuthContext = () => React.useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
+  const [currentRoom, setCurrentRoom] = React.useState('123')
 
   React.useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      // console.log('User, Auth: ', {user,auth})
       if (user) {
         setUser(user);
       } else {
@@ -38,7 +41,7 @@ export const AuthContextProvider = ({ children }) => {
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" })
-    // // console.log(provider);
+    console.log(provider);
     return signInWithPopup(auth, provider);
   }
   return (

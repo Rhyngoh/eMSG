@@ -24,7 +24,7 @@ function Page() {
         let { res, error } = await getUserFromUsersCollection(result?.user);
         // // console.log('res', res);
       }
-      // router.push("/");
+      router.push("/");
     } catch (e) {
       // // console.log(e);
       toast.error("Google Sign Up Failed");
@@ -35,15 +35,15 @@ function Page() {
     event.preventDefault();
 
     const { result, error } = await signIn(email, password);
-    // // console.log(result, error);
+    // console.log(result, error);
     if (error) {
       toast.error("Sign In Failed");
-      return // // console.log("error", error);
+      return console.error("error", error);
     }
 
     // else successful
     toast.success("Sign In Successful");
-    // // console.log(result);
+    // console.log(result);
     return router.push("/");
   };
   const handleSignUp = () => {

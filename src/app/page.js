@@ -8,6 +8,7 @@ import getMessagesByUser from "./../firebase/firestore/getMessagesByUser";
 import InputField from "@/components/InputField";
 import Messages from "@/components/Messages";
 import { useRouter } from "next/navigation";
+import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
 import sendMessageToRoom from "@/firebase/firestore/sendMessageToRoom";
 import replyToMessage from "@/firebase/firestore/replyToMessage";
@@ -15,22 +16,17 @@ import getUserFromUsersCollection from "@/firebase/firestore/getUserFromUsersCol
 
 export default function Home(props) {
   const { user } = useAuthContext();
-  // // console.log(auth, auth.signOut, user);
   const router = useRouter();
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, [])
-  // const fetchUsers = async () => {
-  //   let user1 = await getUserFromUsersCollection("ngoh.ryan@gmail.com");
-  //   let user2 = await getUserFromUsersCollection("rngoh@getmegiddy.com");
-  //   // // console.log(user1, user2)
-  // }
   const handleSignIn = () => {
     router.push('/signin');
   }
 
   return (
-    <main className={styles.main}>
+    <div className='lg:flex lg:h-screen h-[90dvh]'>
+    <aside className="hidden lg:block lg:w-1/5 lg:h-full p-2">
+      <Sidebar mobileView={false}/>
+    </aside>
+    <main className={'flex flex-col justify-between items-center px-4 lg:p-2 h-[90dvh] lg:h-screen flex-1 lg:w-4/5'}>
       {user ? (
         <div>
           <div>Find a chat room!</div>
@@ -47,5 +43,6 @@ export default function Home(props) {
         </div>
       )}
     </main>
+      </div>
   );
 }

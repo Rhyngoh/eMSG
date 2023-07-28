@@ -5,6 +5,8 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  /* border: solid red; */
+  flex: 1 0 auto;
 }
 
 .description {

@@ -4,10 +4,9 @@
 
 
 html, body, :root {
-  max-width: 1680px;
+  /* max-width: 1680px; */
   height: 100%;
   margin: auto;
-  background-color: #f7fafc;
 }
 body {
   overflow: hidden;
