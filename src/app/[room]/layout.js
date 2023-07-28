@@ -11,7 +11,7 @@ import Sidebar from "@/components/Sidebar";
 export default function Layout(props) {
   const { room: roomId } = props.params;
   const { user } = useAuthContext();
-  const { setRoomId } = useRoomsContext();
+  const { setCurrentRoomId } = useRoomsContext();
   const router = useRouter();
   useEffect(() => {
     if (user === null) {
@@ -19,7 +19,7 @@ export default function Layout(props) {
     }
   }, [user]);
   useEffect(() => {
-    setRoomId(roomId);
+    setCurrentRoomId(roomId);
   }, [roomId]);
   return (
     <>
