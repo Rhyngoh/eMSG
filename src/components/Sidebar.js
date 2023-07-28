@@ -8,13 +8,13 @@ import { usePathname } from "next/navigation";
 import getGroupsByUser from "@/firebase/firestore/getGroupsByUser";
 import Button from "./Button";
 import RoomButton from "./RoomButton";
-
+import { useRoomsContext } from "@/context/RoomsContext";
 export default function Sidebar(props) {
   const { auth, user, currentRoom, setCurrentRoom } = useAuthContext();
   const { groups, active, setActive, mobileView } = props;
+  const { rooms } = useRoomsContext();
   const pathname = usePathname();
-  // console.log(auth, user, groups);
-
+  console.log(auth, user, groups);
   return (
     // <div className="mb-10 max-w-md absolute left-0 top-px-100 bg-white">
     //   <div className="border-x-red-300 lg:border-x-8 lg:px-7 lg:h-screen rounded-xl">

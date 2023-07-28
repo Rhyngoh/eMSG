@@ -38,33 +38,15 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const login = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
-  };
-  const signUp = (email, password, username) => {
-    return createUserWithEmailAndPassword(auth, email, password).then(user => {
-      // Need to create a user collection record
-      return user.user.updateProfile({
-        displayName: username
-      })
-    });
-  }
-  const logOut = () => {
-    return signOut(auth);
-  };
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: "select_account" })
-    // console.log(provider);
+    console.log(provider);
     return signInWithPopup(auth, provider);
   }
   return (
-    <AuthContext.Provider value={{ auth, user, login, logOut, signUp, googleSignIn, currentRoom, setCurrentRoom }}>
-      {loading ? <div className="flex flex-col items-center py-10 font-bold text-5xl">
-        <Link href="/signin">
-          Loading: {`${loading}`}
-          </Link>
-        </div> : children}
+    <AuthContext.Provider value={{ auth, user, googleSignIn }}>
+      {loading ? <div className="flex flex-col items-center py-10 font-bold text-5xl">Loading...</div> : children}
     </AuthContext.Provider>
   );
 };

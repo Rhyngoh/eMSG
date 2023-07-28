@@ -7,9 +7,11 @@ import { toast } from "react-hot-toast";
 import FormControls from "@/components/FormControls";
 import { FaUser } from "react-icons/fa";
 import { RiLoginCircleLine } from "react-icons/ri";
+import addUserToUsersCollection from "@/firebase/firestore/addUserToUsersCollection";
 
 function Page() {
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -17,21 +19,19 @@ function Page() {
   const handleForm = async (event) => {
     event.preventDefault();
 
-    const { result, error } = await signUp(email, password, name);
+    const { result, error } = await signUp(email, password, username, displayName);
 
-    if (!name || !email || !password) {
+    if (!username || !email || !password) {
       toast.error("Please fill all fields");
       return;
     } else if (error) {
       toast.error("Sign up failed, please try again");
-      return console.log(error);
+      return // // console.log(error);
     } else {
       // console.log(result);
+      await addUserToUsersCollection(displayName, [], username, email, "");
       return router.push("/");
     }
-  };
-  const handleSignIn = () => {
-    router.push("/signin");
   };
   return (
     <div className="wrapper">
@@ -43,11 +43,18 @@ function Page() {
         </div>
         <form onSubmit={handleForm} className="form">
           <FormControls
+            label="Display Name"
+            type="displayName"
+            id="displayName"
+            value={displayName}
+            setValue={setDisplayName}
+          />
+          <FormControls
             label="Name"
             type="name"
-            id="displayName"
-            value={name}
-            setValue={setName}
+            id="username"
+            value={username}
+            setValue={setUsername}
           />
           <FormControls
             label="Email"

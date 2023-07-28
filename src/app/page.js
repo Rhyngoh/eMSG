@@ -10,31 +10,25 @@ import Messages from "@/components/Messages";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 import Link from "next/link";
+import sendMessageToRoom from "@/firebase/firestore/sendMessageToRoom";
+import replyToMessage from "@/firebase/firestore/replyToMessage";
+import getUserFromUsersCollection from "@/firebase/firestore/getUserFromUsersCollection";
 
 export default function Home(props) {
-  
-  const fetchMap = new Map();
-  function queryClient(name, query) {
-    // console.log("query");
-    if (!fetchMap.has(name)) {
-      fetchMap.set(name, query());
-    }
-    return fetchMap.get(name);
-  }
-
-  const { auth, user } = useAuthContext();
-
+  const { user } = useAuthContext();
+  // // console.log(auth, auth.signOut, user);
   const router = useRouter();
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, [])
+  // const fetchUsers = async () => {
+  //   let user1 = await getUserFromUsersCollection("ngoh.ryan@gmail.com");
+  //   let user2 = await getUserFromUsersCollection("rngoh@getmegiddy.com");
+  //   // // console.log(user1, user2)
+  // }
   const handleSignIn = () => {
     router.push('/signin');
   }
-
-  // const messages = use(
-  //   // queryClient("hello", () => getMessagesByUser("DwTGgEwuz0ZFiOElzPTkQ7Ekct22"))
-  // );
-
-  // console.log("Messages", messages);
-  // console.log("User", user);
 
   return (
     <div className='lg:flex lg:h-screen h-[90dvh]'>
@@ -43,7 +37,12 @@ export default function Home(props) {
     </aside>
     <main className={'flex flex-col justify-between items-center px-4 lg:p-2 h-[90dvh] lg:h-screen flex-1 lg:w-4/5'}>
       {user ? (
-          <Messages groupId='1234' />
+        <div>
+          <div>Find a chat room!</div>
+          <InputField roomId="WdQ7uZ7PrPR2ua9HPEWh" onSubmit={sendMessageToRoom} />
+          <InputField roomId="WdQ7uZ7PrPR2ua9HPEWh" messageId="rXUTbhT1882VhOKzsv1S" onSubmit={replyToMessage} />
+
+        </div>
       ) : (
         <div className="flex flex-col justify-center">
           <p>Welcome to eMSG</p>
