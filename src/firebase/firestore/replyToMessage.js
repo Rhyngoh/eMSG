@@ -23,7 +23,7 @@ export default async function replyToMessage(
   messageBody.content = messageContents;
   messageBody.room_id = roomId;
   messageBody.user_id = userId;
-  // console.log("messageBody", messageBody);
+  // // console.log("messageBody", messageBody);
   try {
     const docRef = doc(collection(db, "rooms", `${roomId}`, "messages", `${messageId}`, "replies"));
     await setDoc(docRef, { ...messageBody, id: docRef.id });
@@ -31,7 +31,7 @@ export default async function replyToMessage(
     // await updateDoc(messageRef, { replyCount: messageRef.replyCount + 1 });
     result = "success";
   } catch (e) {
-    // console.log("error", e);
+    // // console.log("error", e);
     error = e;
   }
 

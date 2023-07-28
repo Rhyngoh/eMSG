@@ -12,7 +12,7 @@ export default function Sidebar(props) {
   const { groups } = props;
   const { rooms } = useRoomsContext();
   const pathname = usePathname();
-  console.log(rooms);
+  // console.log(rooms);
   // console.log(auth, user, groups);
   return (
     <div className="mb-10 max-w-md absolute left-0 top-px-100 bg-white">

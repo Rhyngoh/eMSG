@@ -20,13 +20,13 @@ export default async function setMessagesByUser(
   messageBody.content = messageContents;
   messageBody.group = groupId;
   messageBody.user = userId;
-  // console.log("messageBody", messageBody);
+  // // console.log("messageBody", messageBody);
   try {
     const docRef = doc(collection(db, "messages"));
     await setDoc(docRef, { ...messageBody, id: docRef.id });
     result = "success";
   } catch (e) {
-    // console.log("error", e);
+    // // console.log("error", e);
     error = e;
   }
 

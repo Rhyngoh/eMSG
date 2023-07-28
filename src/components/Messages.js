@@ -13,7 +13,6 @@ export default function Messages(props) {
   const { roomId } = props;
   const { messages } = useRoomsContext();
   const messageEndRef = useRef(null);
-
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
     // messageEndRef.current?.scrollIntoView({ behavior: "smooth" });

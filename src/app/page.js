@@ -14,8 +14,8 @@ import replyToMessage from "@/firebase/firestore/replyToMessage";
 import getUserFromUsersCollection from "@/firebase/firestore/getUserFromUsersCollection";
 
 export default function Home(props) {
-  const { auth, user } = useAuthContext();
-  // console.log(auth, auth.signOut, user);
+  const { user } = useAuthContext();
+  // // console.log(auth, auth.signOut, user);
   const router = useRouter();
   // useEffect(() => {
   //   fetchUsers();
@@ -23,11 +23,12 @@ export default function Home(props) {
   // const fetchUsers = async () => {
   //   let user1 = await getUserFromUsersCollection("ngoh.ryan@gmail.com");
   //   let user2 = await getUserFromUsersCollection("rngoh@getmegiddy.com");
-  //   // console.log(user1, user2)
+  //   // // console.log(user1, user2)
   // }
   const handleSignIn = () => {
     router.push('/signin');
   }
+
   return (
     <main className={styles.main}>
       {user ? (

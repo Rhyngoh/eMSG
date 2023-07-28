@@ -17,9 +17,9 @@ export default async function getAllGroups() {
     const groupsList = querySnapshot.docs.map((doc) => doc.data());
     result = groupsList;
   } catch (e) {
-    // console.log("error", e);
+    // // console.log("error", e);
     error = e;
   }
-  // // console.log('results', result)
+  // // // console.log('results', result)
   return { result, error };
 }

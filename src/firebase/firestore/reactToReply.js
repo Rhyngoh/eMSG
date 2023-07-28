@@ -30,7 +30,7 @@ export default async function reactToMessage(
     // await updateDoc(messageRef, { replyCount: messageRef.replyCount + 1 });
     result = "success";
   } catch (e) {
-    // console.log("error", e);
+    // // console.log("error", e);
     error = e;
   }
 
