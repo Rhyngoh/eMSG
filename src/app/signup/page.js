@@ -11,6 +11,7 @@ import addUserToUsersCollection from "@/firebase/firestore/addUserToUsersCollect
 
 function Page() {
   const [username, setUsername] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -18,7 +19,7 @@ function Page() {
   const handleForm = async (event) => {
     event.preventDefault();
 
-    const { result, error } = await signUp(email, password, username);
+    const { result, error } = await signUp(email, password, username, displayName);
 
     if (!username || !email || !password) {
       toast.error("Please fill all fields");
@@ -27,8 +28,8 @@ function Page() {
       toast.error("Sign up failed, please try again");
       return // // console.log(error);
     } else {
-      // // console.log(result);
-      await addUserToUsersCollection(username, [], username, email, "");
+      // console.log(result);
+      await addUserToUsersCollection(displayName, [], username, email, "");
       return router.push("/");
     }
   };
@@ -42,9 +43,16 @@ function Page() {
         </div>
         <form onSubmit={handleForm} className="form">
           <FormControls
+            label="Display Name"
+            type="displayName"
+            id="displayName"
+            value={displayName}
+            setValue={setDisplayName}
+          />
+          <FormControls
             label="Name"
             type="name"
-            id="displayName"
+            id="username"
             value={username}
             setValue={setUsername}
           />

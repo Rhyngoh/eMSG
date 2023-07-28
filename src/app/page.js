@@ -10,7 +10,7 @@ import Messages from "@/components/Messages";
 import { useRouter } from "next/navigation";
 // const fetchMap = new Map();
 // function queryClient(name, query) {
-//   // // console.log("query");
+//   // console.log("query");
 //   if (!fetchMap.has(name)) {
 //     fetchMap.set(name, query());
 //   }
@@ -39,7 +39,7 @@ export default function Home(props) {
   // const messages = use(
   //   queryClient("hello", () => getMessagesByUser("qsKSi3lz12UrKQc3Ql1G"))
   // );
-  // // // console.log("props", messages);
+  // // console.log("props", messages);
   return (
     <main className={styles.main}>
       {user ? (
