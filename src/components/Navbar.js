@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
   const { auth, user } = useAuthContext();
   const pathname = usePathname();
-  // console.log(auth, user);
+  // // console.log(auth, user);
   return (
     <>
       <div className="flex flex-row-reverse justify-around lg:justify-between px-2 lg:px-10 py-10">

@@ -20,13 +20,13 @@ export default async function createRoom(
   documentBody.name = roomName;
   documentBody.private = isPrivate;
   documentBody.room_picture = roomPicture;
-  // console.log("documentBody", documentBody);
+  // // console.log("documentBody", documentBody);
   try {
     const docRef = doc(collection(db, "rooms"));
     await setDoc(docRef, { ...documentBody, id: docRef.id });
     result = "success";
   } catch (e) {
-    // console.log("error", e);
+    // // console.log("error", e);
     error = e;
   }
 

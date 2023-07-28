@@ -19,14 +19,14 @@ function Page() {
     e.preventDefault();
     try {
       let result = await googleSignIn();
-      // console.log(result);
+      // // console.log(result);
       if (result?.user) {
         let { res, error } = await getUserFromUsersCollection(result?.user);
-        // console.log('res', res);
+        // // console.log('res', res);
       }
       // router.push("/");
     } catch (e) {
-      // console.log(e);
+      // // console.log(e);
       toast.error("Google Sign Up Failed");
       return;
     }
@@ -35,15 +35,15 @@ function Page() {
     event.preventDefault();
 
     const { result, error } = await signIn(email, password);
-    // console.log(result, error);
+    // // console.log(result, error);
     if (error) {
       toast.error("Sign In Failed");
-      return // console.log("error", error);
+      return // // console.log("error", error);
     }
 
     // else successful
     toast.success("Sign In Successful");
-    // console.log(result);
+    // // console.log(result);
     return router.push("/");
   };
   const handleSignUp = () => {
