@@ -16,16 +16,7 @@ import getUserFromUsersCollection from "@/firebase/firestore/getUserFromUsersCol
 
 export default function Home(props) {
   const { user } = useAuthContext();
-  // // console.log(auth, auth.signOut, user);
   const router = useRouter();
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, [])
-  // const fetchUsers = async () => {
-  //   let user1 = await getUserFromUsersCollection("ngoh.ryan@gmail.com");
-  //   let user2 = await getUserFromUsersCollection("rngoh@getmegiddy.com");
-  //   // // console.log(user1, user2)
-  // }
   const handleSignIn = () => {
     router.push('/signin');
   }

@@ -60,13 +60,6 @@ export default function Messages(props) {
               message.createdOn &&
               format(message.createdOn.toDate(), "h:mm a d/M/y");
             return (
-              // <div key={i} className="group/msg-item">
-              //   <p>{message.user}</p>
-              //   <p>{message.content}</p>
-              //   <p>{messageCreatedOn}</p>
-              //   <hr className="border-0 h-0.5 bg-slate-900 group-last:hidden"/>
-              // </div>
-
               <div key={i} className="flex gap-3 relative last:after:hidden after:contents-[''] after:absolute after:-bottom-1.5 after:left-0 after:w-full after:h-0.5 after:bg-black">
                 <img src={'https://picsum.photos/300'} width='40' height='40' className="inline w-10 h-10 rounded-full object-center"/>
                 <div>
@@ -79,9 +72,7 @@ export default function Messages(props) {
           })}
         </div>
       </div>
-      <button onClick={buttonClick}>click</button>
-      <div className="flex justify-center items-center w-full h-[10dvh]">
-        {/* <InputField roomId={roomId} /> */}
+      <div className="w-full h-[10dvh]">
         <InputField roomId={roomId} onSubmit={sendMessageToRoom} />
       </div>
     </div>

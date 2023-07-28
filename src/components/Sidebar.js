@@ -14,25 +14,7 @@ export default function Sidebar(props) {
   const { groups, active, setActive, mobileView } = props;
   const { rooms } = useRoomsContext();
   const pathname = usePathname();
-  console.log(auth, user, groups);
   return (
-    // <div className="mb-10 max-w-md absolute left-0 top-px-100 bg-white">
-    //   <div className="border-x-red-300 lg:border-x-8 lg:px-7 lg:h-screen rounded-xl">
-    //     <p className="text-4xl font-bold">Conversations</p>
-    //     <hr className="mt-5" />
-    //     <div>
-    //       {groups.length > 0 &&
-    //         groups.map((group) => (
-    //           <div className="py-3 flex justify-between items-center border-b-2">
-    //             <Link href={`/${group.id}`} key={group.id}>
-    //               {group.name}
-    //             </Link>
-    //           </div>
-    //         ))}
-    //     </div>
-    //   </div>
-    // </div>
-
     <section className={`flex flex-col ${active ? 'left-[0] before:left-0' : 'left-[-80%] before:left-[100%] before:hidden'} z-20  rounded-r-lg lg:rounded top-0 bottom-0 lg:left-0 transition-all delay-150 duration-500 p-2 w-4/5 ${mobileView ? 'fixed lg:hidden bg-gray-700 overflow-y-visible before:contents-[""] before:w-screen before:h-screen before:bg-gray-600 before:absolute before:left-0 before:top-0 before:-z-20 before:opacity-50 before:blur-md' : 'before:hidden lg:w-full lg:h-full overflow-y-auto'} `}>
             <div className="text-gray-100 text-xl">
                 <div className="p-2.5 mt-1 flex justify-between">
